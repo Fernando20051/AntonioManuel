@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>António Manuel | Serviços e Segurança Digital</title>
+  <link rel="stylesheet" href="  css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#" class="logo">
+        <img src="img/logo-am.png" alt="AM" class="logo-img" onerror="this.src='https://ui-avatars.com/api/?name=AM&background=1a365d&color=ffffff&size=50'">
+      </a>
+      <span class="divisor">|</span>
+      <span class="nome">António Manuel</span>
+<button class="menu-toggle" id="menu-btn">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+      
+  <nav class="nav" id="nav-menu">
+        <ul>
+          <li><a href="#">Início</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#dashboard">Estatísticas</a></li>
+          <li><a href="#area-cliente">Área do Cliente</a></li>
+   <li><a href="#inicio">Como Funciona</a></li>
+          <li><button class="btn-menu-azul" id="btn-sobre">Sobre</button></li>
+   <li><button class="btn-menu-azul" id="btn-comunidade">Comunidade</button></li>
+   
+  <button id="abrir-chat1" class="btn-menu-azul">Papo Directo</button>
+   <li><button class="btn-menu-azul" id="btn-entrar">Entrar</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- BARRA DE NOTIFICAÇÃO -->
+<div id="barra-progresso" class="barra-progresso">
+  <div class="barra-conteudo">
+    <span id="barra-icone" class="barra-icone"></span>
+    <span id="barra-texto" class="barra-texto">A processar...</span>
+    <button id="barra-fechar" class="barra-fechar" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="barra-linha"><div id="barra-preenchimento" class="barra-preenchimento"></div></div>
+</div>
+  <!-- 1. CARROSSEL AUTOMÁTICO (SLIDESHOW) -->
+<section class="section bg-branco" style="padding-bottom: 0;">
+  <div class="container">
+    
+    <div class="carrossel-slideshow">
+      <!-- As Imagens (Passam automaticamente) -->
+<div class="slide active">
+ <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1200&q=80" alt="Mulher a programar">
+<div class="slide-texto">Desenvolvimento e Programação</div>
+  </div>
+<div class="slide">
+   <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=1200&q=80" alt="Documentos e Engenharia">
+    <div class="slide-texto">Documentos e Engenharia</div>
+</div>
+<div class="slide">
+ <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80" alt="Hardware e Tecnologia">
+ <div class="slide-texto">Hardware e Avanço Tecnológico</div>
+      </div>
+   <div class="slide">
+  <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1200&q=80" alt="Cibersegurança">
+        <div class="slide-texto">Segurança Digital</div>
+      </div>
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80" alt="Trabalhos Académicos">
+        <div class="slide-texto">Apoio Académico e Defesas</div>
+      </div>
+      <div class="slide">
+  <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" alt="Dashboards e Análise">
+  <div class="slide-texto">Análise de Dados e Dashboards</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. OS CARTÕES DE SERVIÇOS (Ficam abaixo do slideshow) -->
+<section id="servicos" class="section bg-branco">
+  <div class="container">
+  <h2>Os Nossos Destaques</h2>
+    <p class="section-sub">Tecnologia e Serviços em ação. A Soluções completas para o teu projecto</p>
+    
+<div class="carrossel-row">
+<div class="card">
+ <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="Sites" class="card-img">
+ <div class="card-content">
+    <h3>Sites e Aplicativos</h3>
+<p>Criação de sites rápidos, seguros e adaptados ao telemóvel.</p>
+<a href="https://chat.whatsapp.com/FOh33nqyaecJQBmHHE9vSZ" class="card-link" target="_blank" style="display:inline-block; margin-top: 15px; color: #2563eb; font-weight: bold; text-decoration: none;">Solicitar Este Serviço &rarr;</a>
+   </div>
+ </div>
+<div class="card">
+ <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=600&q=80" alt="Documentos" class="card-img">
+ <div class="card-content">
+  <h3>Documentos e CV</h3>
+ <p>Currículos, folhas de cálculo e apresentações de alto nível.</p>
+<a href="https://chat.whatsapp.com/FOh33nqyaecJQBmHHE9vSZ" class="card-link" target="_blank" style="display:inline-block; margin-top: 15px; color: #2563eb; font-weight: bold; text-decoration: none;">Solicitar Este Serviço &rarr;</a>
+   </div>
+  </div>
+<!-- NOVO CARTÃO: HARDWARE -->
+<div class="card">
+  <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=600&q=80" alt="Hardware" class="card-img">
+  <div class="card-content">
+    <h3>Hardware e Manutenção</h3>
+    <p>Reparação, formatação, substituição de peças e otimização de computadores.</p>
+    <a href="https://chat.whatsapp.com/FOh33nqyaecJQBmHHE9vSZ" class="card-link" target="_blank" style="display:inline-block; margin-top: 15px; color: #2563eb; font-weight: bold; text-decoration: none;">Solicitar Este Serviço &rarr;</a>
+  </div>
+</div>
+
+<!-- NOVO CARTÃO: REDES -->
+<div class="card">
+  <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80" alt="Redes" class="card-img">
+  <div class="card-content">
+    <h3>Redes e Wi-Fi</h3>
+    <p>Configuração de routers, cablagem, partilha de arquivos e segurança de rede.</p>
+    <a href="https://chat.whatsapp.com/FOh33nqyaecJQBmHHE9vSZ" class="card-link" target="_blank" style="display:inline-block; margin-top: 15px; color: #2563eb; font-weight: bold; text-decoration: none;">Solicitar Este Serviço &rarr;</a>
+  </div>
+</div>
+  <div class="card">
+<img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80" alt="Académico" class="card-img">
+<div class="card-content">
+  <h3>Trabalhos Académicos</h3>
+<p>Formatação, slides e apoio na defesa de fim de curso.</p>
+<a href="https://chat.whatsapp.com/FOh33nqyaecJQBmHHE9vSZ" class="card-link" target="_blank" style="display:inline-block; margin-top: 15px; color: #2563eb; font-weight: bold; text-decoration: none;">Solicitar Este Serviço &rarr;</a>
+ </div>
+</div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=600&q=80" alt="Segurança" class="card-img">
+  <div class="card-content">
+   <h3>Segurança Digital</h3>
+  <p>Proteção de dados e boas práticas de segurança.</p>
+<a href="https://chat.whatsapp.com/FOh33nqyaecJQBmHHE9vSZ" class="card-link" target="_blank" style="display:inline-block; margin-top: 15px; color: #2563eb; font-weight: bold; text-decoration: none;">Solicitar Este Serviço &rarr;</a>
+ </div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ========================================== -->
+<!-- SECÇÃO: DASHBOARD DE PROJETOS -->
+<!-- ========================================== -->
+<section id="dashboard" class="section bg-cinza-fundo">
+  <div class="container">
+  <h2>Dashboard de Projectos</h2>
+    <p class="section-sub">Acompanha o estado real dos nossos trabalhos em tempo real.</p>
+
+    <div class="dashboard-grid">
+      
+      <!-- CARD 1: EM DESENVOLVIMENTO -->
+      <div class="dash-card">
+        <div class="dash-header">
+          <span class="status-badge status-amarelo">Em Desenvolvimento</span>
+          <span class="dash-id">#PRJ-001</span>
+        </div>
+  <h3>Site Institucional - Loja ABC</h3>
+ <p class="dash-cliente">Cliente: Maria Silva</p>
+        
+<div class="progresso-box">
+ <div class="progresso-texto">
+<span>Programação e Estrutura</span>
+  <span>65%</span>
+</div>
+<div class="barra-fundo">
+  <div class="barra-preenchida" style="width: 65%; background: #f59e0b;"></div>
+</div>
+ </div>
+ </div>
+
+      <!-- CARD 2: EM TESTES -->
+      <div class="dash-card">
+        <div class="dash-header">
+          <span class="status-badge status-azul">Em Testes (QA)</span>
+          <span class="dash-id">#PRJ-002</span>
+        </div>
+        <h3>Aplicativo de Delivery - Rápido</h3>
+        <p class="dash-cliente">Cliente: Carlos Santos</p>
+        
+  <div class="progresso-box">
+ <div class="progresso-texto">
+  <span>Testes de Segurança</span>
+    <span>90%</span>
+ </div>
+  <div class="barra-fundo">
+    <div class="barra-preenchida" style="width: 90%; background: #3b82f6;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3: NO AR -->
+      <div class="dash-card">
+        <div class="dash-header">
+          <span class="status-badge status-verde">No Ar / Concluído</span>
+          <span class="dash-id">#PRJ-003</span>
+        </div>
+        <h3>Portfólio Fotográfico - João P.</h3>
+        <p class="dash-cliente">Cliente: João Pereira</p>
+        
+  <div class="progresso-box">
+   <div class="progresso-texto">
+<span>Publicado na Internet</span>
+     <span>100%</span>
+     </div>
+   <div class="barra-fundo">
+  <div class="barra-preenchida" style="width: 100%; background: #10b981;"></div>
+          </div>
+        </div>
+ <a href="https://www.github.com/Fernando20051/" target="_blank" class="btn-link" style="display:inline-block; margin-top: 15px; color: #2563eb; font-weight: bold; text-decoration: none;">Ver Site Online &rarr;</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="inicio" class="hero">
+<!-- COMO FUNCIONA + IMAGEM FIXA AO LADO -->
+<section class="section bg-cinza-fundo">
+  <div class="container grid-lado-a-lado">
+ 
+     <!-- Imagem Fixa à Direita (Caixa Branca) -->
+    <div class="imagem-box box-branca">
+      <!-- Esta é a imagem visual ao lado do texto -->
+<img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80" alt="Mulher a programar no computador" class="img-fill">
+    </div>
+    
+    <!-- Texto à Esquerda (Caixa Branca) -->
+    <div class="como-funciona-texto box-branca">
+      <h2>Como Funciona?</h2>
+      <p>É simples e transparente. O processo é dividido em 3 passos:</p>
+      
+      <ul class="passos-lista">
+        <li>
+          <span class="passo-numero">1</span>
+<div>
+ <strong>Em que podemos Ajudá-lo?</strong>
+   <p>Reporta o que precisas e qual a sua dúvida, clica no botão flutuante do WhatsApp. Explicas o que queres.</p>
+</div>
+   </li>
+   <li>
+ <span class="passo-numero">2</span>
+ <div>
+ <strong>Combinamos os detalhes</strong>
+ <p>Definimos o prazo, o valor e o que vai ser feito. Sem surpresas.</p>
+ </div>
+ </li>
+ <li>
+  <span class="passo-numero">3</span>
+ <div>
+ <strong>Acompanha e recebe</strong>
+  <p>Podes ver o estado do teu projeto na Área do Cliente e recebes o trabalho final.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    
+  </div>
+</section>  
+</section>
+
+  <section id="area-cliente" class="section bg-azul">
+    <div class="container area-grid">
+      <div class="area-texto">
+        <h2>Área do Cliente</h2>
+        <p>Acompanha o estado do teu projeto. Aqui vou informar-te quando o teu site ou documento estiver pronto para revisão final.</p>
+        <button class="btn btn-azul-claro" onclick="abrirModal('modal-login')">Aceder ao Painel</button>
+      </div>
+      <div class="area-img-box">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Painel" class="img-fill">
+      </div>
+    </div>
+  </section>
+
+<!-- ========================================== -->
+<!-- SECÇÃO: COMO A COMUNIDADE TRABALHA -->
+<!-- ========================================== -->
+<section id="comunidade" class="section bg-cinza">
+  <div class="container grid-lado-a-lado">
+    
+    <!-- Imagem à Esquerda -->
+    <div class="imagem-box">
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Equipa a trabalhar junta" class="img-fill">
+    </div>
+
+    <!-- Texto à Direita -->
+    <div class="texto-box">
+      <h2>A Força da Nossa Comunidade</h2>
+      <p>Não trabalho sozinho. A comunidade é formada por colegas e amigos talentosos, prontos para unir forças e entregar o melhor resultado para o teu projeto.</p>
+      
+      <div class="etapas-comunidade">
+        <div class="etapa-item">
+          <strong>1. Reunimos as ideias</strong>
+          <p>Analisamos o teu pedido e distribuímos as tarefas para quem tem mais experiência na área.</p>
+        </div>
+        <div class="etapa-item">
+          <strong>2. Desenvolvemos juntos</strong>
+          <p>Cada membro foca na sua especialidade (programação, design, documentos) com supervisão rigorosa.</p>
+        </div>
+        <div class="etapa-item">
+          <strong>3. Entrega ao Cliente</strong>
+          <p>O trabalho é revisto e entregue a ti com a garantia de qualidade de toda a equipa.</p>
+        </div>
+      </div>
+
+      <button class="btn btn-azul" onclick="abrirModal('modal-comunidade')" style="margin-top: 20px;">Fazer Parte da Comunidade</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========================================== -->
+<!-- SECÇÃO: FLUXO DO PROJETO (ATÉ CHEGAR AO CLIENTE) -->
+<!-- ========================================== -->
+<section id="fluxo-projeto" class="section bg-branco">
+  <div class="container">
+    <h2>Como o Teu Projeto Chega Até Ti</h2>
+    <p class="section-sub">Do primeiro contacto à entrega final</p>
+
+    <div class="fluxo-grid">
+      
+      <!-- Etapa 1 -->
+      <div class="fluxo-card">
+        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=500&q=80" alt="Desenvolvedor a atender" class="fluxo-img">
+        <h3>1. Atendimento</h3>
+        <p>Falas comigo pelo WhatsApp. Analiso o teu pedido no computador enquanto ouvimos as tuas necessidades.</p>
+      </div>
+
+      <!-- Etapa 2 -->
+      <div class="fluxo-card">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=500&q=80" alt="Globo com Wi-Fi" class="fluxo-img">
+        <h3>2. Desenvolvimento e Site no Ar</h3>
+        <p>O teu projeto é criado e testado. A internet conecta a nossa equipa ao mundo, colocando o teu site no ar.</p>
+      </div>
+
+      <!-- Etapa 3 -->
+ <div class="fluxo-card">
+  <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=500&q=80" alt="Equipa de TI" class="fluxo-img">
+        <h3>3. Trabalho em Equipa</h3>
+        <p>A equipa de TI (comunidade) entra em ação para rever e garantir que tudo funciona perfeitamente.</p>
+      </div>
+
+      <!-- Etapa 4 -->
+      <div class="fluxo-card">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=500&q=80" alt="Entrega ao cliente" class="fluxo-img">
+        <h3>4. Entrega Final</h3>
+        <p>O produto chega às tuas mãos! Tu aprovas o resultado e acompanhas tudo pela Área do Cliente.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <section id="faq" class="section bg-branco">
+    <div class="container">
+      <h2>Perguntas Frequentes</h2>
+      <div class="faq-box">
+        <details>
+          <summary>Como funciona o pagamento?</summary>
+    <p>Falamos no WhatsApp e acordamos a forma de pagamentos. No momento o sistema não processa pagamentos diretamente.</p>
+        </details>
+        <details>
+          <summary>Como sei se o projeto está pronto?</summary>
+          <p>Basta fazeres login na "Área do Cliente". Lá indico o estado actual do teu pedido.</p>
+        </details>
+        <details>
+          <summary>É seguro enviar os meus dados?</summary>
+          <p>Sim. O site usa encriptação padrão e não partilhamos os teus dados com terceiros.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="saber" class="section bg-cinza" style="text-align: center; padding-bottom: 100px;">
+    <div class="container">
+      <h2>Ficaste com dúvidas?</h2>
+      <p class="section-sub">O meu assistente virtual responde de imediato.</p>
+   <button id="abrir-chat" class="btn btn-hero-azul">Perguntar no Chat</button>
+    </div>
+  </section>
+
+  <div id="chat-window" class="chat-window">
+    <div class="chat-header">
+      <span>Assistente AM</span>
+      <button id="fechar-chat">X</button>
+    </div>
+    <div class="chat-body" id="chat-body">
+      <div class="mensagem-bot">Olá! Sou o assistente do António. Em que posso ajudar?</div>
+    </div>
+    <div class="chat-footer">
+     <input type="text" id="chat-input" placeholder="Escreve a tua dúvida...">
+   <button id="chat-send">Enviar</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+  <div>
+<a href="#" class="logo">
+ <img src="img/logo-am.png" alt="AM" class="logo-img" onerror="this.src='https://ui-avatars.com/api/?name=AM&background=1a365d&color=ffffff&size=50'">
+</a>
+
+<p>Serviços digitais, académicos e técnicos.<br>Atendimento direto com António Manuel.</p>
+ </div>
+
+  <div>
+     <h4>Contactos</h4>
+  <ul class="footer-links">
+ <li><a href="tel:+244973322016" target="_blank">Ligar Agora com Unitel</a></li>
+<li><a href="SMS:+244973322016" target="_blank">Enviar SMS Agora Unitel</a></li>
+   <li><a href="tel:+244957335202" target="_blank">Ligar Agora com Africell</a></li>
+<li><a href="SMS:+244957335202" target="_blank">Enviar SMS Agora Africell</a></li>
+ <li><a href="mailto:antoniofernandomanuel18@gmail.com" target="_blank">Email: antoniofernandomanuel18@gmail.com</a></li>
+    </ul>
+  </div>
+  <div>
+   <h4>Links rápidos</h4>
+ <ul class="footer-links">
+ <li><a href="#">Início</a></li>
+ <li><a href="#servicos">Serviços</a></li>
+  <li><a href="#inicio">Como funciona</a></li>
+<li><a href="#dashboard">Estatísticas</a></li>
+<li><a href="#faq">Perguntas Frequentes</a></li>
+<li><a href="#comunidade">Comunidade dos Desenvolvedores</a></li>
+  <li><a href="#fluxo-projeto">Área de TI</a></li>
+  </ul>
+</div>
+<div>
+  <h4>Nossas Redes</h4>
+ <ul class="footer-links">
+ <li><a href="https://chat.whatsapp.com/FOh33nqyaecJQBmHHE9vSZ" target="_blank">Fazer Pedido</a></li>
+   <li><a href="https://chat.whatsapp.com/FOh33nqyaecJQBmHHE9vSZ">Pagamentos</a></li>
+ <li><a href="https://chat.whatsapp.com/FOh33nqyaecJQBmHHE9vSZ">Falar com a comunidade</a></li>
+ <li><a href="#saber">Saber+</a></li>
+  </ul>
+</div>
+</div>
+  <div class="footer-bottom">&copy; 2026 António Manuel. Todos os direitos reservados.</div>
+  </footer>
+  
+<a href="https://chat.whatsapp.com/FOh33nqyaecJQBmHHE9vSZ" class="btn-whatsapp-flutuante" target="_blank" title="Falar no WhatsApp">
+    <!-- Ícone SVG do WhatsApp -->
+    <svg viewBox="0 0 32 32" width="35" height="35" fill="white">
+      <path d="M16 0C7.2 0 0 7.2 0 16c0 2.8.7 5.5 2.1 7.9L0 32l8.3-2.1c2.3 1.3 5 2 7.7 2 8.8 0 16-7.2 16-16S24.8 0 16 0zm0 29.3c-2.4 0-4.8-.6-6.9-1.8l-.5-.3-5 1.3 1.3-4.8-.3-.5c-1.3-2.1-2-4.6-2-7.2 0-7.3 6-13.3 13.3-13.3S29.3 8.7 29.3 16 23.3 29.3 16 29.3zm7.3-9.9c-.4-.2-2.4-1.2-2.8-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1.1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3 0-.5 0-.7-.1-.2-.9-2.2-1.2-3-.3-.8-.6-.7-.9-.7h-.8c-.3 0-.7.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.9c.2.3 2.6 4 6.3 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.4-1 2.7-1.9.3-1 .3-1.8.2-1.9-.1-.1-.3-.2-.7-.4z"/>
+    </svg>
+  </a>
+
+<!-- MODAL LOGIN / CADASTRO -->
+<div id="modal-login" class="modal">
+  <div class="modal-box">
+    <button class="fechar" onclick="fecharModal('modal-login')">X</button>
+    
+    <!-- ABA DE ENTRAR -->
+    <div id="aba-login">
+  <img src="img/logo-am.png" alt="AM" class="logo-modal" onerror="this.src='https://ui-avatars.com/api/?name=AM&background=1a365d&color=ffffff&size=50'">
+      <h2>Entrar</h2>
+      <form id="form-login-real">
+        <label>E-mail</label>
+        <input type="email" id="login-email" required placeholder="O teu e-mail">
+        <label>Senha</label>
+        <input type="password" id="login-senha" required placeholder="A tua senha">
+        <button type="submit" class="btn btn-azul w-100">Entrar na Área do Cliente</button>
+      </form>
+      <div class="links-modal">
+        <a href="#" onclick="mudarAba('aba-reset')">Esqueci a senha</a> | 
+        <a href="#" onclick="mudarAba('aba-cadastro')">Criar conta</a>
+      </div>
+    </div>
+
+    <!-- ABA DE CADASTRO -->
+    <div id="aba-cadastro" style="display: none;">
+  <img src="img/logo-am.png" alt="AM" class="logo-modal" onerror="this.src='https://ui-avatars.com/api/?name=AM&background=1a365d&color=ffffff&size=50'">
+      <h2>Criar Conta</h2>
+      <form id="form-cadastro-real">
+        <label>O teu Nome Completo</label>
+        <input type="text" id="cad-nome" required placeholder="Ex: João Silva">
+        
+        <label>E-mail</label>
+        <input type="email" id="cad-email" required placeholder="O teu e-mail">
+        
+        <label>Telefone ou WhatsApp</label>
+        <input type="tel" id="cad-telefone" required placeholder="+244...">
+        
+        <label>Defina uma Senha</label>
+        <input type="password" id="cad-senha" required minlength="6" placeholder="Mínimo 6 caracteres">
+        
+        <button type="submit" class="btn btn-azul w-100" style="margin-top: 15px;">Criar Conta</button>
+      </form>
+      <div class="links-modal">
+        <a href="#" onclick="mudarAba('aba-login')">Já tenho conta</a>
+      </div>
+    </div>
+
+    <!-- ABA DE RESET -->
+    <div id="aba-reset" style="display: none;">
+  <img src="img/logo-am.png" alt="AM" class="logo-modal" onerror="this.src='https://ui-avatars.com/api/?name=AM&background=1a365d&color=ffffff&size=50'">
+      <h2>Recuperar Senha</h2>
+      <form id="form-reset-real">
+        <label>E-mail</label>
+        <input type="email" id="reset-email" required placeholder="O teu e-mail">
+        <button type="submit" class="btn btn-azul w-100" style="margin-top: 15px;">Enviar Link de Recuperação</button>
+      </form>
+      <div class="links-modal"><a href="#" onclick="mudarAba('aba-login')">Voltar ao Login</a></div>
+    </div>
+  </div>
+</div>
+
+  <!-- MODAL SOBRE -->
+  <div id="modal-sobre" class="modal">
+    <div class="modal-box">
+    <button class="fechar" onclick="fecharModal('modal-sobre')">X</button>
+  <img src="img/logo-am.png" alt="AM" class="logo-modal" onerror="this.src='https://ui-avatars.com/api/?name=AM&background=1a365d&color=ffffff&size=50'">
+<h2>Sobre o Desenvolvedor</h2>
+
+<p>Olá! Sou o <strong>António Manuel</strong>. Sou desenvolvedor focado em criar soluções digitais completas, desde sites a aplicativos. O meu compromisso é a <strong>transparência total</strong>.</p>
+
+<p>Se precisas de um especialista em informática para gerir o teu negócio, preenche os dados abaixo e fala diretamente comigo:</p>
+
+<form id="form-contacto-rapido">
+  <div class="campo-grupo">
+    <label>O teu Nome:</label>
+    <input type="text" id="contacto-nome" required placeholder="Como te chamas?">
+  </div>
+  
+  <div class="campo-grupo">
+    <label>O que precisas? (Serviço/Problema):</label>
+    <textarea id="contacto-mensagem" rows="3" required placeholder="Ex: Preciso de um site para a minha loja..."></textarea>
+  </div>
+  
+  <button type="submit" class="btn btn-whatsapp w-100" style="margin-top: 15px; border-radius: 8px;">Encaminhar</button>
+</form>
+    </div>
+  </div>
+
+<!-- MODAL COMUNIDADE (RECOLHA DE DADOS) -->
+<div id="modal-comunidade" class="modal">
+  <div class="modal-box" style="max-width: 500px;">
+    <button class="fechar" onclick="fecharModal('modal-comunidade')">X</button>
+
+<img src="img/logo-am.png" alt="AM" class="logo-modal" onerror="this.src='https://ui-avatars.com/api/?name=AM&background=1a365d&color=ffffff&size=50'">
+    <h2>Fazer Parte da Comunidade</h2>
+    <p style="text-align: center; font-size: 0.9rem; color: #64748b; margin-bottom: 15px;">Preenche os teus dados. Vou analisar o teu perfil e entrar em contacto.</p>
+<form id="form-comunidade-real">
+  
+  <div class="campo-grupo">
+    <label>Nome Completo *</label>
+    <input type="text" id="com-nome" required placeholder="O teu nome completo">
+  </div>
+
+  <div class="campo-grupo">
+    <label>Telefone / WhatsApp *</label>
+    <input type="tel" id="com-telefone" required placeholder="+244...">
+  </div>
+
+  <div class="campo-grupo">
+    <label>Área de Interesse *</label>
+    <select id="com-area" required>
+      <option value="">Escolhe uma área...</option>
+      <option>Sites e Aplicativos</option>
+      <option>Documentos e CV</option>
+      <option>Trabalhos Académicos</option>
+      <option>Hardware e Redes</option>
+      <option>Segurança Digital</option>
+    </select>
+  </div>
+
+  <div class="campo-grupo">
+    <label>Nível de Habilidade *</label>
+    <select id="com-habilidade" required>
+      <option value="">Escolhe o teu nível...</option>
+      <option>Iniciante (A aprender)</option>
+      <option>Intermédio (Já fiz alguns projetos)</option>
+      <option>Avançado (Experiência profissional)</option>
+    </select>
+  </div>
+
+  <div class="campo-grupo">
+    <label>O que sabes fazer? (Habilidades) *</label>
+    <textarea id="com-sabe" rows="3" required placeholder="Ex: Sei programar em HTML, CSS, JavaScript, e sei formatar documentos..."></textarea>
+  </div>
+
+  <div class="campo-grupo">
+    <label>Disponibilidade Semanal *</label>
+    <input type="text" id="com-disponibilidade" required placeholder="Ex: 10 horas por semana">
+  </div>
+
+  <div class="campo-grupo">
+    <label>Por que queres fazer parte? *</label>
+    <textarea id="com-motivo" rows="2" required placeholder="Qual é o teu objetivo?"></textarea>
+  </div>
+  <button type="submit" class="btn btn-whatsapp w-100" style="margin-top: 15px; border-radius: 8px;">Enviar Candidatura</button>
+</form>    
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
