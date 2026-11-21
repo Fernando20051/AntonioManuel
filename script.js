@@ -22,19 +22,33 @@ if (barraFechar) {
         document.getElementById('barra-progresso').classList.remove('ativa');
     });
 }
-// 1. Menu Hambúrguer
+
+// 1. Menu Hambúrguer (Lógica Corrigida)
 const menuBtn = document.getElementById('menu-btn');
 const navMenu = document.getElementById('nav-menu');
 
 if(menuBtn && navMenu) {
+    // Abre e fecha ao clicar no botão (X)
     menuBtn.addEventListener('click', () => {
-        // Abre e fecha o menu
         navMenu.classList.toggle('active');
-        // Transforma as riscas em X
         menuBtn.classList.toggle('ativo');
     });
-}
-    // 2. Abrir e Fechar Modais
+
+    // Seleciona apenas os LINKS (tags <a>) dentro do menu
+    const linksNav = navMenu.querySelectorAll('a');
+    
+    linksNav.forEach(link => {
+        link.addEventListener('click', () => {
+            // Fecha o menu apenas para links de navegação
+            navMenu.classList.remove('active');
+            menuBtn.classList.remove('ativo');
+        });
+    });
+    
+    // NOTA: Os botões (<button>) não têm este evento, por isso o menu fica aberto quando clicas neles.
+}   
+
+// 2. Abrir e Fechar Modais
     window.abrirModal = function(id) {
         document.getElementById(id).style.display = 'flex';
     };
@@ -45,6 +59,30 @@ if(menuBtn && navMenu) {
     document.getElementById('btn-sobre').addEventListener('click', () => abrirModal('modal-sobre'));
     document.getElementById('btn-comunidade').addEventListener('click', () => abrirModal('modal-comunidade'));
     document.getElementById('btn-entrar').addEventListener('click', () => abrirModal('modal-login'));
+// Função para verificar se aceitou e enviar aviso para o WhatsApp
+window.aceitarTermos = function(tipo) {
+const checkbox = document.getElementById('aceito-' + tipo);
+    
+if (!checkbox.checked) {
+ mostrarBarra('erro', 'Tens de marcar a caixa para concordar.');
+        return;
+    }
+
+mostrarBarra('carregando', 'A registar o teu consentimento...');
+
+setTimeout(() => {
+// Texto que vai para o teu WhatsApp para ficares com o registo
+const texto = `*NOVO CONSENTIMENTO REGISTADO*\n\nO cliente aceitou os *${tipo.toUpperCase()}* do site.`;
+ const linkWhats = `https://wa.me/244957335202?text=${encodeURIComponent(texto)}`;
+        
+mostrarBarra('sucesso', 'Aceite registado! Obrigado.');
+window.open(linkWhats, '_blank');
+        
+// Fecha o modal e limpa a caixa
+fecharModal('modal-' + tipo);
+        checkbox.checked = false;
+    }, 1000);
+};  
 
     // 3. Alternar Abas no Modal de Login (Entrar, Cadastro, Recuperar)
     window.mudarAba = function(aba) {
