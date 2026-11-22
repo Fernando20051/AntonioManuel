@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
-// Função para mostrar a barra (substitui os alertas feios)
+ import { auth, db } from './firebase.js';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+ import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
 window.mostrarBarra = function(estado, mensagem) {
     const barra = document.getElementById('barra-progresso');
     const texto = document.getElementById('barra-texto');
@@ -11,11 +14,10 @@ window.mostrarBarra = function(estado, mensagem) {
     if (estado === 'sucesso' || estado === 'erro') {
         setTimeout(() => {
             barra.classList.remove('ativa');
-        }, 3000); // A barra desaparece após 3 segundos
+        }, 3000);
     }
 };
 
-// Botão de fechar a barra manualmente
 const barraFechar = document.getElementById('barra-fechar');
 if (barraFechar) {
     barraFechar.addEventListener('click', function() {
@@ -34,18 +36,14 @@ if(menuBtn && navMenu) {
         menuBtn.classList.toggle('ativo');
     });
 
-    // Seleciona apenas os LINKS (tags <a>) dentro do menu
-    const linksNav = navMenu.querySelectorAll('a');
+   const linksNav = navMenu.querySelectorAll('a');
     
-    linksNav.forEach(link => {
-        link.addEventListener('click', () => {
-            // Fecha o menu apenas para links de navegação
-            navMenu.classList.remove('active');
-            menuBtn.classList.remove('ativo');
+linksNav.forEach(link => {
+link.addEventListener('click', () => {
+navMenu.classList.remove('active');
+menuBtn.classList.remove('ativo');
         });
     });
-    
-    // NOTA: Os botões (<button>) não têm este evento, por isso o menu fica aberto quando clicas neles.
 }   
 
 // 2. Abrir e Fechar Modais
@@ -59,7 +57,7 @@ if(menuBtn && navMenu) {
     document.getElementById('btn-sobre').addEventListener('click', () => abrirModal('modal-sobre'));
     document.getElementById('btn-comunidade').addEventListener('click', () => abrirModal('modal-comunidade'));
     document.getElementById('btn-entrar').addEventListener('click', () => abrirModal('modal-login'));
-// Função para verificar se aceitou e enviar aviso para o WhatsApp
+
 window.aceitarTermos = function(tipo) {
 const checkbox = document.getElementById('aceito-' + tipo);
     
@@ -71,7 +69,7 @@ if (!checkbox.checked) {
 mostrarBarra('carregando', 'A registar o teu consentimento...');
 
 setTimeout(() => {
-// Texto que vai para o teu WhatsApp para ficares com o registo
+
 const texto = `*NOVO CONSENTIMENTO REGISTADO*\n\nO cliente aceitou os *${tipo.toUpperCase()}* do site.`;
  const linkWhats = `https://wa.me/244957335202?text=${encodeURIComponent(texto)}`;
         
@@ -99,58 +97,111 @@ fecharModal('modal-' + tipo);
         }
     };
 
-// ==========================================
-// LÓGICA DE FORMULÁRIOS (INTEGRAÇÃO WHATSAPP PRIVADO)
-// ==========================================
+const MEU_NUMERO = "244957335202";
+const meuLink = document.createElement('a');
+meuLink.href = 'https://chat.whatsapp.com/FOh33nqyaecJQBmHHE9vSZ';
+meuLink.target = "_blank";
 
-// O TEU NÚMERO PRIVADO PARA RECEBER OS DADOS
-const MEU_NUMERO = "244957335202"; 
+// FORMULÁRIO DE CADASTRO (CRIAR CONTA)
 
-// 1. Formulário de Cadastro de Cliente
 const formCadastroReal = document.getElementById('form-cadastro-real');
 if (formCadastroReal) {
-    formCadastroReal.addEventListener('submit', function(e) {
+    formCadastroReal.addEventListener('submit', async function(e) {
         e.preventDefault();
-        const nome = document.getElementById('cad-nome').value;
-        const email = document.getElementById('cad-email').value;
-        const telefone = document.getElementById('cad-telefone').value;
-        const senha = document.getElementById('cad-senha').value;
+        
+const nome = document.getElementById('cad-nome').value;
+ const email = document.getElementById('cad-email').value;
+ const telefone = document.getElementById('cad-telefone').value;
+ const senha = document.getElementById('cad-senha').value;
 
-        if(senha.length < 6) {
-            mostrarBarra('erro', 'A senha deve ter pelo menos 6 caracteres.');
-            return;
+        mostrarBarra('carregando', 'A criar a tua conta...');
+
+        try {
+            // 1. Cria o utilizador no Firebase Authentication
+const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
+     const user = userCredential.user;
+
+// 2. Guarda o Nome e o Telefone na base de dados Firestore
+await setDoc(doc(db, "clientes", user.uid), {
+    nome: nome,
+    email: email,
+    telefone: telefone,
+    criadoEm: new Date()
+});
+
+mostrarBarra('sucesso', 'Conta criada com sucesso!');
+            
+setTimeout(() => {
+    fecharModal('modal-login');
+    window.location.href = "painel.html"; // Redireciona para a área do cliente
+            }, 2000);
+
+        } catch (erro) {
+ console.error(erro);
+    if (erro.code === 'auth/email-already-in-use') {
+mostrarBarra('erro', 'Este e-mail já está registado.');
+} else if (erro.code === 'auth/weak-password') {
+ mostrarBarra('erro', 'A senha deve ter pelo menos 6 caracteres.');
+} else {
+ mostrarBarra('erro', 'Erro ao criar conta. Tenta novamente.');
+            }
         }
-
-        mostrarBarra('carregando', 'A preparar o teu registo...');
-
-        setTimeout(() => {
-            // Formata a mensagem para ti
-            const texto = `*NOVO REGISTO NO SITE*\n\n*Nome:* ${nome}\n*Email:* ${email}\n*Telefone:* ${telefone}\n*Senha:* ${senha}\n\n(Nota: A senha será tratada no Firebase em breve).`;
-            
-            // Abre no TEU número privado
-            const linkWhats = `https://wa.me/${MEU_NUMERO}?text=${encodeURIComponent(texto)}`;
-            
-            mostrarBarra('sucesso', 'Dados enviados! A abrir o WhatsApp...');
-            window.open(linkWhats, '_blank');
-            formCadastroReal.reset();
-            fecharModal('modal-login');
-        }, 1200);
     });
 }
 
-// 2. Formulário de Login (Simulação de envio)
+// ==========================================
+// FORMULÁRIO DE LOGIN (ENTRAR)
+// ==========================================
 const formLoginReal = document.getElementById('form-login-real');
 if (formLoginReal) {
-    formLoginReal.addEventListener('submit', function(e) {
+    formLoginReal.addEventListener('submit', async function(e) {
         e.preventDefault();
-        mostrarBarra('carregando', 'A autenticar...');
-        setTimeout(() => {
-            // Como ainda não temos Firebase real, enviamos para o Whats
-            const email = document.getElementById('login-email').value;
-            const texto = `*TENTATIVA DE LOGIN*\n\nO cliente *${email}* está a tentar entrar na Área do Cliente.`;
-            window.open(`https://wa.me/${MEU_NUMERO}?text=${encodeURIComponent(texto)}`, '_blank');
-            mostrarBarra('sucesso', 'A abrir o WhatsApp...');
-        }, 1000);
+        
+        const email = document.getElementById('login-email').value;
+        const senha = document.getElementById('login-senha').value;
+
+        mostrarBarra('carregando', 'A verificar os dados...');
+
+ try {
+// O Firebase verifica se o e-mail e a senha estão corretos
+await signInWithEmailAndPassword(auth, email, senha);
+
+ mostrarBarra('sucesso', 'Login aprovado! A entrar...');
+            
+setTimeout(() => {
+    fecharModal('modal-login');
+window.location.href = "painel.html"; // Redireciona para a área do cliente
+}, 1500);
+
+} catch (erro) {
+ console.error(erro);
+     if (erro.code === 'auth/invalid-credential' || erro.code === 'auth/user-not-found' || erro.code === 'auth/wrong-password') {
+mostrarBarra('erro', 'E-mail ou senha incorretos.');
+} else {
+  mostrarBarra('erro', 'Erro ao fazer login. Tenta novamente.');
+            }
+        }
+    });
+}
+
+// ==========================================
+// RECUPERAR SENHA
+// ==========================================
+const formResetReal = document.getElementById('form-reset-real');
+if (formResetReal) {
+    formResetReal.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('reset-email').value;
+        mostrarBarra('carregando', 'A enviar o e-mail de recuperação...');
+
+  try {
+ await sendPasswordResetEmail(auth, email);
+mostrarBarra('sucesso', 'E-mail enviado! Verifica a tua caixa de entrada.');
+formResetReal.reset();
+} catch (erro) {
+mostrarBarra('erro', 'E-mail não encontrado no sistema.');
+        }
     });
 }
 
@@ -179,49 +230,13 @@ const texto = `*NOVA CANDIDATURA À COMUNIDADE*\n\n` +`*Nome:* ${nome}\n` +`*Ida
 `*Motivo:* ${motivo}`;
 // Envia para o TEU número
 const linkWhats = `https://wa.me/${MEU_NUMERO}?text=${encodeURIComponent(texto)}`;
-            
-            mostrarBarra('sucesso', 'Candidatura pronta! A abrir o WhatsApp...');
-            window.open(linkWhats, '_blank');
-            formComunidadeReal.reset();
-            fecharModal('modal-comunidade');
+mostrarBarra('sucesso', 'Candidatura pronta! Aguarde a resposta do desenvolvedor...');
+window.open(linkWhats, '_blank');
+    formComunidadeReal.reset();
+fecharModal('modal-comunidade');
         }, 1500);
     });
 }
-
-// ==========================================
-// 6. FORMULÁRIO DE RECUPERAÇÃO DE SENHA
-// ==========================================
-const formResetReal = document.getElementById('form-reset-real');
-if (formResetReal) {
-    formResetReal.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-const email = document.getElementById('reset-email').value;
-const btnSubmit = formResetReal.querySelector('button[type="submit"]');
-
-// 1. Mostra a barra azul a carregar
-mostrarBarra('carregando', 'A verificar o e-mail...');
-
-// Bloqueia o botão temporariamente
- btnSubmit.disabled = true;
- btnSubmit.innerHTML = 'A processar...';
-
- setTimeout(() => {
-// 2. Mostra a barra verde de sucesso
-mostrarBarra('sucesso', 'Link de recuperação enviado (Simulação)!');
-            
-    // Restaura o botão
-btnSubmit.disabled = false;
-btnSubmit.innerHTML = 'Enviar Link de Recuperação';
-//Opcional: Fecha a janela após 3 segundos
-setTimeout(() => {
-formResetReal.reset();
-fecharModal('modal-login');
-            }, 3000);
-
-        }, 1500);
-    });
-}   
 
 // ==========================================
 // 8. CHATBOT INTELIGENTE (Baseado em Regras)
@@ -263,28 +278,32 @@ function adicionarMensagem(texto, tipo) {
 if(chatSend && chatInput && chatBody) {
     chatSend.addEventListener('click', function() {
         const texto = chatInput.value.trim();
-        if (texto === '') return;
-        
-        adicionarMensagem(texto, 'user');
+if (texto === ''){
+ chatInput.style.border='2px solid #FF1616';   
+ return;}
+else
+ chatInput.style.border='2px solid #2563eb';   
+ 
+ adicionarMensagem(texto, 'user');
         chatInput.value = '';
-        
-        // O Bot a "pensar" por 1 segundo
+ // O Bot a "pensar" por 1 segundo
  setTimeout(() => {
 const msg = texto.toLowerCase();
     let resposta = "";
 
  if (msg.includes('preço') || msg.includes('custo') || msg.includes('quanto') || msg.includes('valor')) {
-resposta = "Os preços variam consoante a complexidade do projeto. <br><br>Se precisares de <strong>urgência</strong>, o valor pode sofrer um acréscimo. Para um orçamento exato, clica no botão do WhatsApp e fala comigo!";
+meuLink.textContent = 'Agora.';
+resposta = `Os preços variam consoante a complexidade do projecto. <br><br>Se precisares de <strong>urgência</strong>, o valor pode sofrer um acréscimo. Para um orçamento exato, fala comigo ${meuLink}!`;
             } 
 else if (msg.includes('tempo') || msg.includes('prazo') || msg.includes('demora')) {
-resposta = "O tempo de criação depende do que precisas: <br>• <strong>Sites simples:</strong> 3 a 7 dias.<br>• <strong>Aplicações complexas:</strong> 2 a 4 semanas.<br>• <strong>Documentos/CV:</strong> 24 a 48 horas.<br><br>Se for urgente, falamos no WhatsApp para acelerar o processo!";
+meuLink.textContent = 'Aqui';    
+resposta = `O tempo de criação depende do que precisas: <br>• <strong>Sites simples:</strong> 4 a 8 dias.<br>• <strong>Aplicações complexas:</strong> 3 a 4 semanas.<br>• <strong>Documentos/CV:</strong> 24 a 48 horas.<br><br>Se for urgente, falamos ${meuLink} para acelerar o processo!`;
             }
-else if (msg.includes('quem') || msg.includes('antónio') || msg.includes('antonio') || msg.includes('criador')) {
+else if (msg.includes('quem') || msg.includes('antónio') || msg.includes('antonio') || msg.includes('criador')|| msg.includes('Antônio')) {
 resposta = "Sou o assistente virtual do <strong>António Manuel</strong>. Ele é desenvolvedor web, programador e estudante de Cibersegurança . O foco dele é criar soluções seguras, transparentes e eficaz para os clientes.";
 }
 else if (msg.includes('comunidade') || msg.includes('equipa') || msg.includes('trabalhar')) {
-resposta = "A comunidade é a equipa de colegas e amigos do António. Juntos, dividimos tarefas para entregar sites, documentos e suporte técnico com alta qualidade. Se queres fazer parte, clica no menu 'Comunidade' e preenche a candidatura!";
-            }
+resposta = "A comunidade é a equipa de colegas e amigos do António. Juntos, dividimos tarefas para entregar sites, documentos e suporte técnico com alta qualidade. Se queres fazer parte, clica no menu 'Comunidade' e preenche a candidatura!";}
 else if (msg.includes('serviço') || msg.includes('faz') || msg.includes('fazes')) {
 resposta = "O António e a equipa fazem de tudo um pouco na área da informática: <br>• Criação de Sites e Apps<br>• Documentos e CVs<br>• Trabalhos Académicos<br>• Hardware e Redes<br>• Segurança Digital e Mais.";
  }
@@ -292,7 +311,7 @@ else if (msg.includes('ganha') || msg.includes('ganho') || msg.includes('program
 resposta = "Tudo depende da sua produtividade, criação e paciência (alguns casos)<br>• Criação de Sites e Apps se o rendimento for alto, ganha mais<br>• Documentos e CVs se o rendimento for alto, ganha mais<br>• Trabalhos Académicos se o rendimento for alto, ganha mais<br>• Hardware e Redes se o rendimento for alto, ganha mais<br>• Segurança Digital e Mais. Dependem do problema detectado.";
 }
 else if (msg.includes('whatsapp') || msg.includes('contacto') || msg.includes('falar')) {
-resposta = 'Podes falar diretamente com o António clicando <a href="https://wa.me/244957335202" target="_blank" style="color:#2563eb; font-weight:bold;">aqui neste link do WhatsApp</a>. Ele responde o mais rápido possível!';
+resposta = 'Podes falar directamente com o António clicando <a href="https://wa.me/244957335202" target="_blank" style="color:#2563eb; font-weight:bold;">aqui neste link do WhatsApp</a>. Ele responde o mais rápido possível!';
 }
 else if (msg.includes('és') || msg.includes('ia') || msg.includes('criado por')|| msg.includes('IA') || msg.includes('criador') || msg.includes('você') || msg.includes('Empresa') || msg.includes('empresa') || msg.includes('Quem  é António Manuel') || msg.includes('AM') ) {
 resposta = "Sim, sou um Assistente digital crido por António Manuel na empresa António Manuel (AM).";
@@ -301,14 +320,12 @@ else if (msg.includes('olá') || msg.includes('oi') || msg.includes('bom dia') |
 resposta = "Olá! Em que posso ajudar hoje? Podes perguntar sobre preços, prazos, quem é o António, ou o que a comunidade faz.";
 }
  else {
-resposta = "Não tenho a certeza sobre isso, mas o António sabe tudo! Clica <a href='https://chat.whatsapp.com/FOh33nqyaecJQBmHHE9vSZ' target='_blank' style='color:#2563eb; font-weight:bold;'>aqui para falar com ele no WhatsApp</a> e ele responde-te diretamente.";
-            }
-
+resposta = "Não tenho a certeza sobre isso, mas o António sabe tudo! Clica <a href='https://chat.whatsapp.com/FOh33nqyaecJQBmHHE9vSZ' target='_blank' style='color:#2563eb; font-weight:bold;'>aqui para falar com ele</a> e ele responde-te diretamente."; }
 adicionarMensagem(resposta, 'bot');
         }, 1000);
     });
 
-    // Permitir enviar com a tecla Enter
+// Permitir enviar com a tecla Enter
     chatInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             chatSend.click();
@@ -316,46 +333,6 @@ adicionarMensagem(resposta, 'bot');
     });
 }
 
-  /*  if(abrirChatBtn || abrirChatBtn1) {
-abrirChatBtn.addEventListener('click', () => chatWindow.style.display = 'block');
-abrirChatBtn1.addEventListener('click', () => chatWindow.style.display = 'block');
-
-  fecharChatBtn.addEventListener('click', () => chatWindow.style.display = 'none');
-
-        function adicionarMensagem(texto, tipo) {
-            const div = document.createElement('div');
-            div.className = tipo === 'bot' ? 'mensagem-bot' : 'mensagem-user';
-            div.textContent = texto;
-            chatBody.appendChild(div);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
-function responderBot(mensagem) {
-            const msg = mensagem.toLowerCase();
-setTimeout(() => {
-      if (msg.includes('preço') || msg.includes('custo')) {
-adicionarMensagem("Os preços variam. Fala comigo no WhatsApp para um orçamento!", 'bot');
-} else if (msg.includes('site') || msg.includes('web')) {
-adicionarMensagem("Faço sites seguros e prontos para o telemóvel. Queres ver exemplos?", 'bot');
- } else if (msg.includes('seguro') || msg.includes('pronto')) {
-adicionarMensagem("A segurança é o meu foco! Podes ver o estado do teu projeto na Área do Cliente.", 'bot');
-} else {
- adicionarMensagem("Para te responder melhor, clica no botão verde e fala direto comigo!", 'bot');
-                }
-            }, 1200);
-        }
-
- chatSend.addEventListener('click', () => {
- const texto = chatInput.value.trim();
-if (texto === '') return;
-            adicionarMensagem(texto, 'user');
-            chatInput.value = '';
-            responderBot(texto);
-        });
-        
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') chatSend.click();
-        });
-    }*/
 // 6. Carrossel Automático (Slideshow)
 const slides = document.querySelectorAll('.slide');
 if (slides.length > 0) {
