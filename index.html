@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>António Manuel | Serviços e Segurança Digital</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="https://ui-avatars.com/api/?name=AM&background=1a365d&color=ffffff&size=50" type="image/x-icon" />
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -32,7 +33,7 @@
    <li><button class="btn-menu-azul" id="btn-comunidade">Comunidade</button></li>
    
   <button id="abrir-chat1" class="btn-menu-azul">Papo Directo</button>
-   <li><button class="btn-menu-azul" id="btn-entrar">Entrar</button></li>
+   <li><button class="btn-menu-azul" id="btn-entrar"><a href="login.html" class="btn-menu-azul" style="text-decoration:none;">Entrar</a></button></li>
         </ul>
       </nav>
     </div>
@@ -551,64 +552,6 @@
     </svg>
   </a>
 
-<!-- MODAL LOGIN / CADASTRO -->
-<div id="modal-login" class="modal">
-  <div class="modal-box">
-    <button class="fechar" onclick="fecharModal('modal-login')">X</button>
-    
-    <!-- ABA DE ENTRAR -->
-    <div id="aba-login">
-  <img src="img/logo-am.png" alt="AM" class="logo-modal" onerror="this.src='https://ui-avatars.com/api/?name=AM&background=1a365d&color=ffffff&size=50'">
-      <h2>Entrar</h2>
-      <form id="form-login-real">
-        <label>E-mail</label>
-        <input type="email" id="login-email" required placeholder="O teu e-mail">
-        <label>Senha</label>
-        <input type="password" id="login-senha" required placeholder="A tua senha">
-        <button type="submit" class="btn btn-azul w-100">Entrar na Área do Cliente</button>
-      </form>
-      <div class="links-modal">
-        <a href="#" onclick="mudarAba('aba-reset')">Esqueci a senha</a> | 
-        <a href="#" onclick="mudarAba('aba-cadastro')">Criar conta</a>
-      </div>
-    </div>
-
-    <!-- ABA DE CADASTRO -->
-    <div id="aba-cadastro" style="display: none;">
-  <img src="img/logo-am.png" alt="AM" class="logo-modal" onerror="this.src='https://ui-avatars.com/api/?name=AM&background=1a365d&color=ffffff&size=50'">
-      <h2>Criar Conta</h2>
-      <form id="form-cadastro-real">
-        <label>O teu Nome Completo</label>
- <input type="text" id="cad-nome" required placeholder="Ex: João Silva">
- <label>E-mail</label>
- <input type="email" id="cad-email" required placeholder="O teu e-mail">
- <label>Telefone ou WhatsApp</label>
-        <input type="tel" id="cad-telefone" required placeholder="+244...">
-        
-        <label>Defina uma Senha</label>
-        <input type="password" id="cad-senha" required minlength="6" placeholder="Mínimo 6 caracteres">
-        
-        <button type="submit" class="btn btn-azul w-100" style="margin-top: 15px;">Criar Conta</button>
-      </form>
-      <div class="links-modal">
-        <a href="#" onclick="mudarAba('aba-login')">Já tenho conta</a>
-      </div>
-    </div>
-
-    <!-- ABA DE RESET -->
-    <div id="aba-reset" style="display: none;">
-  <img src="img/logo-am.png" alt="AM" class="logo-modal" onerror="this.src='https://ui-avatars.com/api/?name=AM&background=1a365d&color=ffffff&size=50'">
-      <h2>Recuperar Senha</h2>
-      <form id="form-reset-real">
-        <label>E-mail</label>
-        <input type="email" id="reset-email" required placeholder="O teu e-mail">
-        <button type="submit" class="btn btn-azul w-100" style="margin-top: 15px;">Enviar Link de Recuperação</button>
-      </form>
-      <div class="links-modal"><a href="#" onclick="mudarAba('aba-login')">Voltar ao Login</a></div>
-    </div>
-  </div>
-</div>
-
   <!-- MODAL SOBRE -->
   <div id="modal-sobre" class="modal">
     <div class="modal-box">
@@ -647,17 +590,17 @@
 <form id="form-comunidade-real">
   
   <div class="campo-grupo">
-    <label>Nome Completo *</label>
+    <label>Nome Completo </label>
     <input type="text" id="com-nome" required placeholder="O teu nome completo">
   </div>
 
   <div class="campo-grupo">
-    <label>Telefone / WhatsApp *</label>
+    <label>Telefone / WhatsApp </label>
     <input type="tel" id="com-telefone" required placeholder="+244...">
   </div>
 
   <div class="campo-grupo">
-    <label>Área de Interesse *</label>
+    <label>Área de Interesse </label>
     <select id="com-area" required>
       <option value="">Escolhe uma área...</option>
       <option>Sites e Aplicativos</option>
@@ -669,7 +612,7 @@
   </div>
 
   <div class="campo-grupo">
-    <label>Nível de Habilidade *</label>
+    <label>Nível de Habilidade </label>
     <select id="com-habilidade" required>
       <option value="">Escolhe o teu nível...</option>
       <option>Iniciante (A aprender)</option>
@@ -679,17 +622,17 @@
   </div>
 
   <div class="campo-grupo">
-    <label>O que sabes fazer? (Habilidades) *</label>
+    <label>O que sabes fazer? (Habilidades) </label>
     <textarea id="com-sabe" rows="3" required placeholder="Ex: Sei programar em HTML, CSS, JavaScript, e sei formatar documentos..."></textarea>
   </div>
 
   <div class="campo-grupo">
-    <label>Disponibilidade Semanal *</label>
+    <label>Disponibilidade Semanal </label>
     <input type="text" id="com-disponibilidade" required placeholder="Ex: 10 horas por semana">
   </div>
 
   <div class="campo-grupo">
-    <label>Por que queres fazer parte? *</label>
+    <label>Por que queres fazer parte? </label>
     <textarea id="com-motivo" rows="2" required placeholder="Qual é o teu objetivo?"></textarea>
   </div>
   <button type="submit" class="btn btn-whatsapp w-100" style="margin-top: 15px; border-radius: 8px;">Enviar Candidatura</button>
@@ -743,6 +686,6 @@
   </div>
 </div>
 
-<script type="module" src="script.js"></script>
+<script src="script.js"></script>
 </body>
-</html>
+</html> 

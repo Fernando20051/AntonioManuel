@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login User| António Manuel</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Estilos específicos para a página de Login */
+    body { display: flex; align-items: center; justify-content: center; min-height: 100vh; background-color: #f1f5f9; background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 20px 20px; }
+    
+    .login-container { background: white; padding: 40px 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 420px;}
+  .login-container h2 { text-align: center; color: #1a365d; margin-bottom: 25px; }
+    
+/* O campo inteiro (label + input) */
+.campo-grupo {
+  margin-bottom: 20px;
+}
+
+/* A label fica em cima, normal */
+.campo-grupo label {
+  display: block;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #1a365d;
+  margin-bottom: 8px;
+}
+
+/* A caixa que segura o ícone e o input */
+.input-group {
+  position: relative; /* É isto que prende o ícone dentro desta caixa */
+  width: 100%;
+}
+
+/* O ícone SVG */
+.input-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%); /* Centra o ícone na altura exata do input */
+  width: 20px;
+  height: 20px;
+  fill: #94a3b8;
+  transition: fill 0.3s;
+  pointer-events: none; /* Impede que o ícone bloqueie o clique no input */
+}
+
+/* O input (campo de texto) */
+.input-group input {
+  width: 100%;
+  padding: 14px 15px 14px 45px; /* O 45px à esquerda é o espaço para o ícone */
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #f8fafc;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+/* Efeitos quando o utilizador clica no campo */
+.input-group input:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Quando o input está focado, o ícone fica azul */
+
+.input-group input:focus + .input-icon,
+.input-group:focus-within .input-icon {
+  fill: #2563eb;
+}
+    
+    /* Links */
+    .links-login { text-align: center; margin-top: 20px; font-size: 1rem; display: flex; flex-direction: column; gap: 10px; }
+    .links-login a { color: #2563eb; text-decoration: none; font-weight: bold; cursor: pointer; }
+    .links-login a:hover { text-decoration: underline; }
+    .links-login a.voltar { color: #64748b; font-weight: normal; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA DE PROGRESSO -->
+  <div id="barra-progresso" class="barra-progresso">
+    <div class="barra-conteudo">
+      <span id="barra-icone" class="barra-icone"></span>
+      <span id="barra-texto" class="barra-texto">A processar...</span>
+    </div>
+    <div class="barra-linha"><div id="barra-preenchimento" class="barra-preenchimento"></div></div>
+  </div>
+
+  <!-- CAIXA DE LOGIN -->
+<div class="login-container">
+  <img src="img/logo-am.png" alt="AM" class="logo-modal" style="display:block; margin: 0 auto 20px; width:70px; height:70px; border-radius:50%; border: 3px solid #d4af37; object-fit:cover;" onerror="this.src='https://ui-avatars.com/api/?name=AM&background=1a365d&color=ffffff&size=50'">
+    
+    <!-- LOGIN -->
+    <div id="form-login-box">
+      <h2>Entrar</h2>
+      <form id="form-login-real">
+  <div class="campo-grupo"> 
+    <label>E-mail</label>
+ <div class="input-group">
+  <svg class="input-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+    <!-- Ícone de Envelope -->
+  <input type="email" id="login-email" required placeholder="ex: teu@email.com">
+  </div>
+  </div>
+        
+<!-- EXEMPLO DE UM CAMPO CORRIGIDO -->
+<div class="campo-grupo">
+  <label>Senha</label>
+  <div class="input-group">
+    <!-- Ícone Cadeado -->
+    <svg class="input-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>
+    <!-- Campo de Texto -->
+    <input type="password" id="login-senha" required placeholder="A tua senha">
+  </div>
+</div>
+ <button type="submit" class="btn btn-azul w-100" style="margin-top: 10px; padding: 14px;">Entrar na Conta</button>
+</form>
+      
+<div class="links-login">
+ <a onclick="mostrarCadastro()">Criar uma conta nova</a>
+ <a onclick="mostrarReset()">Esqueci a minha senha</a>
+        <a href="index.html" class="voltar">Voltar ao site</a>
+      </div>
+    </div>
+
+    <!-- CADASTRO -->
+    <div id="form-cadastro-box" style="display: none;">
+      <h2>Criar Conta</h2>
+      <form id="form-cadastro-real">
+  <div class="campo-grupo">
+    <label>Nome Completo</label> <div class="input-group">
+     <!-- Ícone de Pessoa -->
+  <svg class="input-icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+  <input type="text" id="cad-nome" required placeholder="O teu nome">
+ </div>
+</div>
+
+<div class="campo-grupo">
+<label>Telefone</label>
+ <div class="input-group">
+ <!-- Ícone de Telefone -->
+<svg class="input-icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+<input type="tel" id="cad-telefone" required placeholder="+244 9xx xxx xxx">
+ </div>
+</div>
+
+<div class="campo-grupo">
+  <label>E-mail</label>
+<div class="input-group">
+  <svg class="input-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+   <input type="email" id="cad-email" required placeholder="ex: nando@email.com">
+  </div>
+</div>
+<div class="campo-grupo">
+ <label>Senha</label>
+ <div class="input-group">
+  <svg class="input-icon" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/></svg>
+  <input type="password" id="cad-senha" required minlength="6" placeholder="Mínimo 6 caracteres">
+ </div>
+</div>
+
+<button type="submit" class="btn btn-azul w-100" style="margin-top: 10px; padding: 14px;">Registar Conta</button>
+</form>
+<div class="links-login">
+  <a onclick="mostrarLogin()">Já tenho conta. Entrar.</a>
+  </div>
+</div>
+<!-- RECUPERAR -->
+<div id="form-reset-box" style="display: none;">
+  <h2>Recuperar Senha</h2>
+  <p style="text-align: center; font-size: 0.9rem; color: #64748b; margin-bottom: 20px;">Enviaremos um link para o teu e-mail.</p>
+  <form id="form-reset-real">
+<div class="campo-grupo">
+  <label>E-mail</label>
+<div class="input-group">
+ <svg class="input-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+  <input type="email" id="reset-email" required placeholder="ex: user@email.com">
+ </div>
+</div>
+<button type="submit" class="btn btn-azul w-100" style="padding: 14px;">Recuperar</button>
+ </form>
+  <div class="links-login">
+   <a onclick="mostrarLogin()">Voltar ao Login</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BIBLIOTECAS DO FIREBASE -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  
+  <script src="login.js"></script>
+</body>
+</html>

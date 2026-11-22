@@ -1,32 +1,4 @@
-const firebaseConfig = {
-  apiKey: "AIzaSyAIIuJmOB2aMctISubZ7YDcZSQuEQoEDKo",
-  authDomain: "antonio-manuel-site.firebaseapp.com",
-  projectId: "antonio-manuel-site",
-  storageBucket: "antonio-manuel-site.firebasestorage.app",
-  messagingSenderId: "932034090596",
-  appId: "1:932034090596:web:bd316ebed091caed537171"
-};
-
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
-
 document.addEventListener('DOMContentLoaded', function() {
-
-const firebaseConfig = {
-apiKey: "AIzaSyAIIuJmOB2!&& aMctISubZ7YDcZSQuEQoEDKo",
- authDomain: "antonio-manuel-site.firebaseapp.com",
-projectId: "antonio-manuel-site",
-storageBucket: "antonio-manuel-site.firebasestorage.app",
-messagingSenderId: "932034090596",
- appId: "1:932034090596:web:bd316ebed091caed537171"
-    };
-
-    // Inicializar
-    firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
-    
 window.mostrarBarra = function(estado, mensagem) {
     const barra = document.getElementById('barra-progresso');
     const texto = document.getElementById('barra-texto');
@@ -125,88 +97,6 @@ const MEU_NUMERO = "244957335202";
 const meuLink = document.createElement('a');
 meuLink.href = 'https://chat.whatsapp.com/FOh33nqyaecJQBmHHE9vSZ';
 meuLink.target = "_blank";
-
-// ==========================================
-// LÓGICA REAL DO FIREBASE (Cola dentro do DOMContentLoaded)
-// ==========================================
-
-// 1. CADASTRO
-const formCadastroReal = document.getElementById('form-cadastro-real');
-if (formCadastroReal) {
-    formCadastroReal.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const nome = document.getElementById('cad-nome').value;
-        const email = document.getElementById('cad-email').value;
-        const telefone = document.getElementById('cad-telefone').value;
-        const senha = document.getElementById('cad-senha').value;
-
-        mostrarBarra('carregando', 'A criar conta...');
-
-        auth.createUserWithEmailAndPassword(email, senha)
-            .then((userCredential) => {
-                return db.collection("clientes").doc(userCredential.user.uid).set({
-                    nome: nome, email: email, telefone: telefone, criadoEm: new Date()
-                });
-            })
-            .then(() => {
-                mostrarBarra('sucesso', 'Conta criada! A redirecionar...');
-                setTimeout(() => {
-                    fecharModal('modal-login');
-                    window.location.href = "painel.html"; // Vai para o painel
-                }, 2000);
-            })
-            .catch((erro) => {
-                if (erro.code === 'auth/email-already-in-use') {
-                    mostrarBarra('erro', 'Este e-mail já está registado.');
-                } else {
-                    mostrarBarra('erro', 'Erro ao criar conta.');
-                }
-            });
-    });
-}
-
-// 2. LOGIN
-const formLoginReal = document.getElementById('form-login-real');
-if (formLoginReal) {
-    formLoginReal.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const email = document.getElementById('login-email').value;
-        const senha = document.getElementById('login-senha').value;
-
-        mostrarBarra('carregando', 'A verificar...');
-
-        auth.signInWithEmailAndPassword(email, senha)
-            .then(() => {
-                mostrarBarra('sucesso', 'Login efetuado!');
-                setTimeout(() => {
-                    fecharModal('modal-login');
-                    window.location.href = "painel.html"; // Vai para o painel
-                }, 1500);
-            })
-            .catch(() => {
-                mostrarBarra('erro', 'E-mail ou senha incorretos.');
-            });
-    });
-}
-
-// 3. RECUPERAR SENHA
-const formResetReal = document.getElementById('form-reset-real');
-if (formResetReal) {
-    formResetReal.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const email = document.getElementById('reset-email').value;
-        mostrarBarra('carregando', 'A enviar e-mail...');
-
-        auth.sendPasswordResetEmail(email)
-            .then(() => {
-                mostrarBarra('sucesso', 'Link enviado para o e-mail!');
-                formResetReal.reset();
-            })
-            .catch(() => {
-                mostrarBarra('erro', 'E-mail não encontrado.');
-            });
-    });
-}
 
 // 3. Formulário de Comunidade (O MAIS IMPORTANTE)
 const formComunidadeReal = document.getElementById('form-comunidade-real');
@@ -425,33 +315,34 @@ if (formContacto) {
     formContacto.addEventListener('submit', function(e) {
         e.preventDefault();
         const nome = document.getElementById('contacto-nome').value;
- const mensagem = document.getElementById('contacto-mensagem').value;
+        const mensagem = document.getElementById('contacto-mensagem').value;
         
-if(!nome || !mensagem) {
- mostrarBarra('erro', 'Por favor, preenche todos os campos.');
+        if(!nome || !mensagem) {
+            mostrarBarra('erro', 'Por favor, preenche todos os campos.');
             return;
         }
 
         mostrarBarra('carregando', 'A preparar a tua mensagem...');
         
-const btnSubmit = formContacto.querySelector('button[type="submit"]');
-const textoOriginal = btnSubmit.innerHTML;
- btnSubmit.innerHTML = 'A abrir o grupo de comunicação...';
+        const btnSubmit = formContacto.querySelector('button[type="submit"]');
+        const textoOriginal = btnSubmit.innerHTML;
+        btnSubmit.innerHTML = 'A abrir o WhatsApp...';
         btnSubmit.disabled = true;
 
-setTimeout(() => {
- const textoFormatado = `Olá António! Meu nome é ${nome}. Preciso de ajuda com o seguinte: ${mensagem}`;
- const linkWhatsApp = `https://wa.me/${MEU_NUMERO}?text=${encodeURIComponent(textoFormatado)}`;
+        setTimeout(() => {
+            const textoFormatado = `Olá António! Meu nome é ${nome}. Preciso de ajuda com o seguinte: ${mensagem}`;
+            const linkWhatsApp = `https://wa.me/${MEU_NUMERO}?text=${encodeURIComponent(textoFormatado)}`;
             
-mostrarBarra('sucesso', 'Mensagem pronta! Abre o WhatsApp para enviar.');
-window.open(linkWhatsApp, '_blank');
-setTimeout(() => {
- formContacto.reset();
-  btnSubmit.innerHTML = textoOriginal;
- btnSubmit.disabled = false;
-  fecharModal('modal-sobre');
-}, 3000);
-  }, 1200);
-});
+            mostrarBarra('sucesso', 'Mensagem pronta! Abre o WhatsApp para enviar.');
+            window.open(linkWhatsApp, '_blank');
+            
+            setTimeout(() => {
+                formContacto.reset();
+                btnSubmit.innerHTML = textoOriginal;
+                btnSubmit.disabled = false;
+                fecharModal('modal-sobre');
+            }, 3000);
+        }, 1200);
+    });
 }
 });
