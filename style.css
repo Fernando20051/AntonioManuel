@@ -21,14 +21,14 @@ body {
 .w-100 { width: 100%; }
 
 .header { background: var(--azul-escuro); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-.header-inner { display: flex; align-items: center; height: 75px; gap: 15px; }
+.header-inner { display: flex; align-items: center; height: 75px; gap: 15px;}
 /* --- LOGO NO TOPO (COM BORDA DOURADA) --- */
 .logo-img { 
   height: 45px; 
-  width: 45px; /* Força a largura igual à altura para ficar perfeitamente redondo */
-  border-radius: 50%; /* Torna a imagem redonda */
-  border: 3px solid #d4af37; /* A BORDA DOURADA (Código da cor do teu logo) */
-  object-fit: cover; /* Garante que a imagem preenche o círculo sem esticar */
+  width: 45px;
+  border-radius: 50%; 
+  border: 3px solid #d4af37; /**/
+  object-fit: cover; /* círculo sem esticar */
   display: block; 
   box-shadow: 0 0 10px rgba(212, 175, 55, 0.4); /* Um brilho dourado suave por trás */
 }
@@ -682,7 +682,7 @@ transition: all 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* Alinha tudo à esquerda */
-    gap: 15px;
+    gap: 10px;
     width: 100%;
     list-style: none;
     padding: 0;

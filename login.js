@@ -52,25 +52,39 @@ function mostrarBarra(estado, mensagem) {
 // ==========================================
 document.addEventListener('DOMContentLoaded', function() {
     
-    // LOGIN
-    const formLogin = document.getElementById('form-login-real');
-    if (formLogin) {
-        formLogin.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const senha = document.getElementById('login-senha').value;
-            mostrarBarra('carregando', 'A verificar...');
+// LOGIN
+const formLogin = document.getElementById('form-login-real');
+if (formLogin) {
+    formLogin.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const senha = document.getElementById('login-senha').value;
 
-            auth.signInWithEmailAndPassword(email, senha)
-                .then(() => {
-                    mostrarBarra('sucesso', 'Login efetuado!');
-                    setTimeout(() => window.location.href = "painel.html", 1500);
-                })
-                .catch(() => {
-                    mostrarBarra('erro', 'E-mail ou senha incorretos.');
-                });
-        });
-    }
+        mostrarBarra('carregando', 'A verificar os teus dados...');
+
+        auth.signInWithEmailAndPassword(email, senha)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                mostrarBarra('sucesso', 'Login efectuado! A redirecionar...');
+
+                // === O SEGREDO DO REDIRECIONAMENTO INTELIGENTE ===
+                // Se o e-mail for o teu (Admin), vai para o admin.html
+                if (user.email === "antoniofernandomanuel18@gmail.com") {
+                    setTimeout(() => {
+                        window.location.href = "admin.html";
+                    }, 1500);
+                } else {
+                    // Se for um cliente, vai para o painel.html
+                    setTimeout(() => {
+                        window.location.href = "painel.html";
+                    }, 1500);
+                }
+            })
+            .catch((erro) => {
+                mostrarBarra('erro', 'E-mail ou senha incorrectos.');
+            });
+    });
+}
 
     // CADASTRO
     const formCadastro = document.getElementById('form-cadastro-real');
@@ -83,20 +97,24 @@ document.addEventListener('DOMContentLoaded', function() {
             const senha = document.getElementById('cad-senha').value;
 
             mostrarBarra('carregando', 'A criar conta...');
-auth.createUserWithEmailAndPassword(email, senha)
-    .then((userCredential) => {
-        return db.collection("clientes").doc(userCredential.user.uid).set({
-            nome: nome, email: email, telefone: telefone, criadoEm: new Date()
-        });
-    })
-    .then(() => {
-        mostrarBarra('sucesso', 'Conta criada! A redirecionar...');
-        setTimeout(() => window.location.href = "painel.html", 2000);
-    })
-    .catch((erro) => {
-        alert("ERRO: " + erro.code + " - " + erro.message); // Vais ver isto se falhar
-        mostrarBarra('erro', 'Erro: ' + erro.message);
-    });
+
+            auth.createUserWithEmailAndPassword(email, senha)
+                .then((userCredential) => {
+                    return db.collection("clientes").doc(userCredential.user.uid).set({
+                        nome: nome, email: email, telefone: telefone, criadoEm: new Date()
+                    });
+                })
+                .then(() => {
+                    mostrarBarra('sucesso', 'Conta criada! A redirecionar...');
+                    setTimeout(() => window.location.href = "painel.html", 2000);
+                })
+                .catch((erro) => {
+                    if (erro.code === 'auth/email-already-in-use') {
+                        mostrarBarra('erro', 'Este e-mail já está registado.');
+                    } else {
+                        mostrarBarra('erro', 'Erro: ' + erro.message);
+                    }
+                });
         });
     }
 

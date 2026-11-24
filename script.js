@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+ 
 window.mostrarBarra = function(estado, mensagem) {
     const barra = document.getElementById('barra-progresso');
     const texto = document.getElementById('barra-texto');
@@ -187,12 +188,24 @@ const msg = texto.toLowerCase();
  if (msg.includes('preço') || msg.includes('custo') || msg.includes('quanto') || msg.includes('valor')) {
 meuLink.textContent = 'Agora.';
 resposta = `Os preços variam consoante a complexidade do projecto. <br><br>Se precisares de <strong>urgência</strong>, o valor pode sofrer um acréscimo. Para um orçamento exato, fala comigo ${meuLink}!`;
-            } 
-else if (msg.includes('tempo') || msg.includes('prazo') || msg.includes('demora')) {
-meuLink.textContent = 'Aqui';    
-resposta = `O tempo de criação depende do que precisas: <br>• <strong>Sites simples:</strong> 4 a 8 dias.<br>• <strong>Aplicações complexas:</strong> 3 a 4 semanas.<br>• <strong>Documentos/CV:</strong> 24 a 48 horas.<br><br>Se for urgente, falamos ${meuLink} para acelerar o processo!`;
             }
-else if (msg.includes('quem') || msg.includes('antónio') || msg.includes('antonio') || msg.includes('criador')|| msg.includes('Antônio')) {
+else if (msg.includes('sistema') || msg.includes('funciona') || msg.includes('pedir') || msg.includes('solicitar') || msg.includes('serviço')) {
+ resposta = "O nosso sistema é muito simples! <br><br>1. Clica em <strong>'Entrar'</strong> no menu para criares a tua conta.<br>2. Na tua Área do Cliente, clica em <strong>'Novo Pedido'</strong>.<br>3. Descreve o que precisas e envia. <br><br>Acompanha o estado do projeto diretamente no teu painel!";
+        } 
+else if (msg.includes('login') || msg.includes('cadastro') || msg.includes('conta') || msg.includes('senha') || msg.includes('registar')) {
+resposta = "Para aceder à Área do Cliente, basta clicares no botão <strong>'Entrar'</strong> no topo do site. Se ainda não tiveres conta, clica em 'Criar Conta' e preenche os teus dados. É rápido e seguro! Se te esqueceres da senha, podes recuperá-la na página de login.";
+        }
+else if (msg.includes('seguro') || msg.includes('dados') || msg.includes('hacker') || msg.includes('proteção') || msg.includes('firebase')) {
+ resposta = "A segurança é a nossa prioridade! O sistema usa ferramentas avançada de segurança (tecnologia do Google) para proteger as tuas senhas e dados. Ninguém além de ti e do António tem acesso aos teus pedidos.";
+        }
+else if (msg.includes('comunidade') || msg.includes('equipa') || msg.includes('trabalhar') || msg.includes('vaga')) {
+ resposta = "A comunidade é a equipa que ajuda o António nos projectos. Se queres fazer parte, vai ao menu <strong>'Comunidade'</strong>, preenche o formulário com as tuas habilidades e eu entro em contacto!";
+        }
+else if (msg.includes('tempo') || msg.includes('prazo') || msg.includes('demora') || msg.includes('quando')) {
+resposta = "Os prazos variam conforme o projecto: <br>• <strong>Sites Simples:</strong> 5 a 7 dias.<br>• <strong>Aplicações Complexas:</strong> 2 a 4 semanas.<br>• <strong>Documentos/Currículos:</strong> 24 a 48 horas.<br><br>Se for urgente, fala comigo no WhatsApp para tentarmos acelerar!";
+ }
+
+else if (msg.includes('quem') || msg.includes('antónio') || msg.includes('antonio') || msg.includes('criador')|| msg.includes('antônio')) {
 resposta = "Sou o assistente virtual do <strong>António Manuel</strong>. Ele é desenvolvedor web, programador e estudante de Cibersegurança . O foco dele é criar soluções seguras, transparentes e eficaz para os clientes.";
 }
 else if (msg.includes('comunidade') || msg.includes('equipa') || msg.includes('trabalhar')) {
@@ -204,16 +217,16 @@ else if (msg.includes('ganha') || msg.includes('ganho') || msg.includes('program
 resposta = "Tudo depende da sua produtividade, criação e paciência (alguns casos)<br>• Criação de Sites e Apps se o rendimento for alto, ganha mais<br>• Documentos e CVs se o rendimento for alto, ganha mais<br>• Trabalhos Académicos se o rendimento for alto, ganha mais<br>• Hardware e Redes se o rendimento for alto, ganha mais<br>• Segurança Digital e Mais. Dependem do problema detectado.";
 }
 else if (msg.includes('whatsapp') || msg.includes('contacto') || msg.includes('falar')) {
-resposta = 'Podes falar directamente com o António clicando <a href="https://wa.me/244957335202" target="_blank" style="color:#2563eb; font-weight:bold;">aqui neste link do WhatsApp</a>. Ele responde o mais rápido possível!';
+resposta = 'Podes falar directamente com o António clicando <a href="https://wa.me/244957335202" target="_blank" style="color:#2563eb; font-weight:bold;">aqui neste link</a>. Ele responde o mais rápido possível!';
 }
-else if (msg.includes('és') || msg.includes('ia') || msg.includes('criado por')|| msg.includes('IA') || msg.includes('criador') || msg.includes('você') || msg.includes('Empresa') || msg.includes('empresa') || msg.includes('Quem  é António Manuel') || msg.includes('AM') ) {
+else if (msg.includes('és') || msg.includes('ia') || msg.includes('criado por') || msg.includes('criador') || msg.includes('você') || msg.includes('empresa') || msg.includes('Quem  é antónio manuel')) {
 resposta = "Sim, sou um Assistente digital crido por António Manuel na empresa António Manuel (AM).";
 }
 else if (msg.includes('olá') || msg.includes('oi') || msg.includes('bom dia') || msg.includes('boa tarde')) {
 resposta = "Olá! Em que posso ajudar hoje? Podes perguntar sobre preços, prazos, quem é o António, ou o que a comunidade faz.";
 }
  else {
-resposta = "Não tenho a certeza sobre isso, mas o António sabe tudo! Clica <a href='https://chat.whatsapp.com/FOh33nqyaecJQBmHHE9vSZ' target='_blank' style='color:#2563eb; font-weight:bold;'>aqui para falar com ele</a> e ele responde-te diretamente."; }
+}
 adicionarMensagem(resposta, 'bot');
         }, 1000);
     });
@@ -345,4 +358,32 @@ if (formContacto) {
         }, 1200);
     });
 }
+  
+  // --- LÓGICA DOS CARTÕES DE SERVIÇO ---
+  const linksServico = document.querySelectorAll('.card-link');
+  linksServico.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const user = firebase.auth().currentUser;
+      if (user) { window.location.href = "painel.html"; } 
+      else { window.location.href = "login.html"; }
+    });
+  });
+
+  // --- LÓGICA DO BOTÃO "PAINEL DO CLIENTE" ---
+  const btnPainel = document.getElementById('btn-painel-cliente');
+  if (btnPainel) {
+    btnPainel.addEventListener('click', function(e) {
+      e.preventDefault();
+      const user = firebase.auth().currentUser;
+      
+      if (user) {
+        
+        window.location.href = "painel.html"; 
+} else {
+        window.location.href = "login.html"; 
+      }
+    });
+  }
+    
 });

@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>António Manuel | Serviços e Segurança Digital</title>
-  <link rel="shortcut icon" href="https://ui-avatars.com/api/?name=AM&background=1a365d&color=ffffff&size=50" type="image/x-icon" />
-<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
+<link rel="shortcut icon" href="https://ui-avatars.com/api/?name=AM&background=1a365d&color=ffffff&size=50" type="image/x-icon" />
 </head>
 <body>
 
@@ -23,9 +23,9 @@
 </button>
       
   <nav class="nav" id="nav-menu">
-        <ul>
-          <li><a href="#">Início</a></li>
-          <li><a href="#servicos">Serviços</a></li>
+     <ul>
+       <li><a href="#">Início</a></li>
+         <li><a href="#servicos">Serviços</a></li>
           <li><a href="#dashboard">Estatísticas</a></li>
           <li><a href="#area-cliente">Área do Cliente</a></li>
    <li><a href="#inicio">Como Funciona</a></li>
@@ -33,7 +33,8 @@
    <li><button class="btn-menu-azul" id="btn-comunidade">Comunidade</button></li>
    
   <button id="abrir-chat1" class="btn-menu-azul">Papo Directo</button>
-   <li><button class="btn-menu-azul" id="btn-entrar"><a href="login.html" class="btn-menu-azul" style="text-decoration:none;">Entrar</a></button></li>
+   <li><button class="btn-menu-azul" id="btn-entrar"><a href="login.html" class="btn-menu-azul card-link" style="text-decoration:none;">Entrar</a>
+</button></li>
         </ul>
       </nav>
     </div>
@@ -151,11 +152,6 @@
 <section class="section bg-branco">
   <div class="container grid-lado-a-lado">
     
-    <!-- Imagem à Esquerda -->
-    <div class="imagem-box">
-      <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80" alt="Negócio a crescer" class="img-fill">
-    </div>
-
     <!-- Texto à Direita -->
     <div class="como-funciona-texto box-branca">
       <h2>O Teu Sucesso é o Nosso Objectivo</h2>
@@ -178,12 +174,16 @@
         </li>
         <li>
           <span class="passo-numero">3</span>
-          <div>
+   <div>
             <strong>O que ganhar?</strong>
             <p>Mais visibilidade, mais contactos e mais lucro. O retorno do teu investimento é garantido.</p>
           </div>
         </li>
       </ul>
+    </div>
+    <!-- Imagem à Esquerda -->
+    <div class="imagem-box">
+      <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80" alt="Negócio a crescer" class="img-fill">
     </div>
 
   </div>
@@ -194,22 +194,23 @@
 <!-- ========================================== -->
 <section class="section bg-cinza-fundo">
   <div class="container grid-lado-a-lado">
-    
-    <!-- Texto à Esquerda -->
-    <div class="como-funciona-texto box-branca">
-      <h2>Quem Está Por Trás do Código?</h2>
-      <p>Não somos apenas um site. Somos uma comunidade de desenvolvedores e técnicos dedicados. O António Manuel lidera a equipa, mas o trabalho é feito em conjunto para garantir a máxima qualidade.</p>
-      
-      <p>Trabalhamos com transparência total. Cada linha de código, cada imagem e cada configuração foi pensada para ser segura, rápida e funcional. Não usamos atalhos, usamos as melhores práticas do mercado.</p>
-
-      <br>
-      <button class="btn btn-azul w-100" onclick="abrirModal('modal-comunidade')">Conhecer a Equipa</button>
-    </div>
-
+  
 <!-- Imagem à Direita -->
 <div class="imagem-box">
   <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Código de programação no ecrã" class="img-fill">
 </div>
+
+   <!-- Texto à Esquerda -->
+    <div class="como-funciona-texto box-branca">
+ <h2>Quem Está Por Trás do Código?</h2>
+  <p>Não somos apenas um site. Somos uma comunidade de desenvolvedores e técnicos dedicados. O António Manuel lidera a equipa, mas o trabalho é feito em conjunto para garantir a máxima qualidade.</p>
+      
+  <p>Trabalhamos com transparência total. Cada linha de código, cada imagem e cada configuração foi pensada para ser segura, rápida e funcional. Não usamos atalhos, usamos as melhores práticas do mercado.</p>
+
+   <br>
+ <button class="btn btn-azul w-100" onclick="abrirModal('modal-comunidade')">Conhecer a Equipa</button>
+    </div>
+    
   </div>
 </section>
 
@@ -219,11 +220,6 @@
 <section class="section bg-branco">
   <div class="container grid-lado-a-lado">
     
-    <!-- Imagem à Esquerda -->
-    <div class="imagem-box">
-      <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="Servidores e Data Centers" class="img-fill">
-    </div>
-
     <!-- Texto à Direita -->
     <div class="como-funciona-texto box-branca">
       <h2>Infraestrutura Segura e Profissional</h2>
@@ -232,10 +228,14 @@
  <ul class="lista-check" style="margin-top: 20px;">
 <li><strong>Servidores Dedicados:</strong> O site fica alojado em máquinas de alta performance (não é partilhado com sites aleatórios).</li>
         <li><strong>Segurança Máxima:</strong> Certificado SSL (o cadeado do navegador), firewalls e backups diários.</li>
-        <li><strong>Domínio Próprio:</strong> O teu negócio ganha o endereço oficial (ex: `www.oteunegocio.com`).</li>
+        <li><strong>Domínio Próprio:</strong> O teu negócio ganha o endereço oficial (ex: «www.oteunegocio.com»).</li>
         <li><strong>Disponibilidade 99.9%:</strong> O servidor está desenhado para nunca falhar.</li>
       </ul>
       <p style="font-size: 0.9rem; color: #64748b; margin-top: 15px;">A hospedagem profissional tem um custo anual, garantindo a proteção e a velocidade que um negócio sério exige.</p>
+    </div>
+    <!-- Imagem à Esquerda -->
+    <div class="imagem-box">
+      <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="Servidores e Data Centers" class="img-fill">
     </div>
 
   </div>
@@ -294,10 +294,10 @@
       <div class="dash-card">
         <div class="dash-header">
           <span class="status-badge status-verde">No Ar / Concluído</span>
-          <span class="dash-id">#PRJ-003</span>
-        </div>
-        <h3>Portfólio Fotográfico - Luísa P.</h3>
-        <p class="dash-cliente">Cliente: Luísa Pedro</p>
+  <span class="dash-id">#PRJ-003</span>
+  </div>
+   <h3>Portfólio Fotográfico - Luísa P.</h3>
+<p class="dash-cliente">Cliente: Luísa Pedro</p>
         
   <div class="progresso-box">
    <div class="progresso-texto">
@@ -365,7 +365,7 @@
       <div class="area-texto">
         <h2>Área do Cliente</h2>
         <p>Acompanha o estado do teu projecto. Aqui vou informar-te quando o teu site ou documento estiver pronto para revisão final.</p>
-        <button class="btn btn-azul-claro" onclick="abrirModal('modal-login')">Aceder ao Painel</button>
+  <button class="btn btn-azul-claro" id="btn-painel-cliente">Aceder ao Painel</button>
       </div>
       <div class="area-img-box">
         <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Painel" class="img-fill">
@@ -451,7 +451,6 @@
     </div>
   </div>
 </section>
-
 <section id="faq" class="section bg-branco">
 <div class="container">
    <h2>Perguntas Frequentes</h2>
@@ -469,8 +468,8 @@
   <p>Sim. O site usa encriptação padrão e não partilhamos os teus dados com terceiros.</p>
   </details>
 <details>
- <summary>Quanto custa um aplicativo ou serviço?</summary>
-  <p>O preço pode variar  consoante o pedido e o local. Normalmente cobramos deslocamento e serviço dentro do orçamento estabelecido.</p>
+ <summary>Quanto custa um aplicativo ou site?</summary>
+  <p>O preço pode variar consoante o pedido. Normalmente cobramos preços acessível</p>
   </details>
   </div>
   </div>
@@ -601,7 +600,7 @@
 
   <div class="campo-grupo">
     <label>Área de Interesse </label>
-    <select id="com-area" required>
+   <select id="com-area" required>
       <option value="">Escolhe uma área...</option>
       <option>Sites e Aplicativos</option>
       <option>Documentos e CV</option>
@@ -616,7 +615,7 @@
     <select id="com-habilidade" required>
       <option value="">Escolhe o teu nível...</option>
       <option>Iniciante (A aprender)</option>
-      <option>Intermédio (Já fiz alguns projetos)</option>
+      <option>Intermédio (Já fiz alguns projectos)</option>
       <option>Avançado (Experiência profissional)</option>
     </select>
   </div>
@@ -687,5 +686,31 @@
 </div>
 
 <script src="script.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+
+<script>
+  // Configuração do Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyAIIuJmOB2aMctISubZ7YDcZSQuEQoEDKo",
+    authDomain: "antonio-manuel-site.firebaseapp.com",
+    projectId: "antonio-manuel-site",
+    storageBucket: "antonio-manuel-site.firebasestorage.app",
+    messagingSenderId: "932034090596",
+    appId: "1:932034090596:web:bd316ebed091caed537171"
+  };
+  firebase.initializeApp(firebaseConfig);
+
+  function solicitarServico() {
+    const user = firebase.auth().currentUser;
+    if (user) {
+      window.location.href = "painel.html";
+    } else {
+      window.location.href = "login.html";
+    }
+  }
+</script>
+
 </body>
-</html> 
+</html>

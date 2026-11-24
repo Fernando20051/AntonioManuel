@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://ui-avatars.com/api/?name=AM&background=1a365d&color=ffffff&size=50" type="image/x-icon" />
+
+  <title>Painel de Admin | António Manuel</title>
+  <style>
+    /* Reutiliza o mesmo estilo do painel para manter a identidade */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --azul-escuro: #1a365d; --azul-vivo: #2563eb; --dourado: #d4af37; --cinza: #f1f5f9; --texto: #334155; }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #e2e8f0; background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 20px 20px; color: var(--texto); }
+    
+    .header-admin { background: var(--azul-escuro); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; color: white; }
+    .header-admin h1 { font-size: 1.2rem; }
+    .btn-sair { background: #ef4444; color: white; padding: 8px 15px; border-radius: 6px; border: none; cursor: pointer; font-weight: bold; }
+    
+    .container { max-width: 1000px; margin: 20px auto; padding: 0 15px; }
+    
+    /* Tabela de Pedidos */
+    .tabela-pedidos { width: 100%; background: white; border-collapse: collapse; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-top: 20px; }
+    .tabela-pedidos th, .tabela-pedidos td { padding: 15px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+    .tabela-pedidos th { background: #f8fafc; color: var(--azul-escuro); font-weight: bold; }
+    .tabela-pedidos tr:last-child td { border-bottom: none; }
+    
+    /* Botões de Ação */
+    .btn-acao { padding: 6px 10px; margin: 0.8rem; border: none; border-radius: 4px; cursor: pointer; font-size: 1.2rem; font-weight: bold; margin-right: 5px; color: white; }
+    .btn-iniciar { background: #f59e0b; }
+    .btn-concluir { background: #10b981; }
+    .btn-pago { background: #3b82f6; }
+
+    .selo { padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
+    .selo-analise { background: #e2e8f0; color: #475569; }
+    .selo-andamento { background: #fef3c7; color: #b45309; }
+    .selo-concluido { background: #dcfce7; color: #15803d; }
+    
+    #loading { text-align: center; padding: 30px; font-weight: bold; color: var(--azul-escuro); }
+  </style>
+</head>
+<body>
+
+  <header class="header-admin">
+    <h1>Admin | António Manuel</h1>
+    <button class="btn-sair" onclick="sair()">Sair</button>
+  </header>
+
+  <div class="container">
+    <div id="loading">A carregar todos os pedidos...</div>
+    
+    <table class="tabela-pedidos" id="tabela" style="display: none;">
+      <thead>
+        <tr>
+          <th>Cliente (UID)</th>
+          <th>Serviço</th>
+          <th>Estado</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="corpo-tabela">
+        <!-- O JavaScript vai preencher as linhas aqui -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
