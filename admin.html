@@ -3,67 +3,242 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="https://ui-avatars.com/api/?name=AM&background=1a365d&color=ffffff&size=50" type="image/x-icon" />
-
   <title>Painel de Admin | António Manuel</title>
+   <link rel="shortcut icon" href="https://ui-avatars.com/api/?name=AM&background=1a365d&color=ffffff&size=50" type="image/x-icon" />
   <style>
-    /* Reutiliza o mesmo estilo do painel para manter a identidade */
+    /* ===== RESET E VARIÁVEIS ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --azul-escuro: #1a365d; --azul-vivo: #2563eb; --dourado: #d4af37; --cinza: #f1f5f9; --texto: #334155; }
-    body { font-family: 'Segoe UI', sans-serif; background-color: #e2e8f0; background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 20px 20px; color: var(--texto); }
+    :root { 
+      --azul-escuro: #1a365d; --azul-vivo: #2563eb; --dourado: #d4af37; 
+      --cinza-fundo: #e2e8f0; --texto: #334155; --vermelho: #ef4444;
+    }
+    body { font-family: 'Segoe UI', sans-serif; background-color: var(--cinza-fundo); background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 20px 20px; color: var(--texto); }
     
-    .header-admin { background: var(--azul-escuro); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; color: white; }
+    /* ===== HEADER ===== */
+    .header-admin { background: var(--azul-escuro); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
     .header-admin h1 { font-size: 1.2rem; }
-    .btn-sair { background: #ef4444; color: white; padding: 8px 15px; border-radius: 6px; border: none; cursor: pointer; font-weight: bold; }
+    .header-botoes { display: flex; gap: 10px; }
+    .btn-header { background: var(--azul-vivo); color: white; padding: 8px 15px; border-radius: 6px; border: none; cursor: pointer; font-weight: bold; font-size: 0.9rem; }
+    .btn-sair { background: var(--vermelho); color: white; padding: 8px 15px; border-radius: 6px; border: none; cursor: pointer; font-weight: bold; font-size: 0.9rem; }
     
-    .container { max-width: 1000px; margin: 20px auto; padding: 0 15px; }
-    
-    /* Tabela de Pedidos */
-    .tabela-pedidos { width: 100%; background: white; border-collapse: collapse; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-top: 20px; }
-    .tabela-pedidos th, .tabela-pedidos td { padding: 15px; text-align: left; border-bottom: 1px solid #e2e8f0; }
-    .tabela-pedidos th { background: #f8fafc; color: var(--azul-escuro); font-weight: bold; }
-    .tabela-pedidos tr:last-child td { border-bottom: none; }
-    
-    /* Botões de Ação */
-    .btn-acao { padding: 6px 10px; margin: 0.8rem; border: none; border-radius: 4px; cursor: pointer; font-size: 1.2rem; font-weight: bold; margin-right: 5px; color: white; }
+    /* ===== CONTAINER E CARTOES ===== */
+    .container { max-width: 900px; margin: 20px auto; padding: 0 15px; }
+    .cartao-admin { background: white; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 20px; overflow: hidden; border-left: 5px solid var(--azul-vivo); }
+    .cartao-topo { background: #f8fafc; padding: 15px 20px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .cartao-topo h3 { color: var(--azul-escuro); font-size: 1.1rem; margin: 0; }
+    .cartao-ids { font-size: 0.8rem; color: #64748b; }
+    .cartao-corpo { padding: 20px; }
+    .cartao-descricao { background: #f1f5f9; padding: 15px; border-radius: 6px; margin-bottom: 15px; font-size: 0.95rem; }
+    .cartao-acoes { display: flex; flex-wrap: wrap; gap: 10px; border-top: 1px solid #e2e8f0; padding-top: 15px; }
+    .btn-acao { padding: 8px 12px; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: bold; color: white; transition: 0.2s; }
     .btn-iniciar { background: #f59e0b; }
     .btn-concluir { background: #10b981; }
     .btn-pago { background: #3b82f6; }
-
+    .btn-fatura { background: var(--azul-escuro); }
+    .btn-apagar { background: var(--vermelho); }
+    .btn-valores { background: var(--azul-escuro); color: #fff; }
     .selo { padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
     .selo-analise { background: #e2e8f0; color: #475569; }
     .selo-andamento { background: #fef3c7; color: #b45309; }
     .selo-concluido { background: #dcfce7; color: #15803d; }
+
+    /* ===== MODAIS E FORMULÁRIOS ===== */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.8); z-index: 3000; align-items: center; justify-content: center; padding: 20px; }
+    .modal-box { background: white; padding: 30px; border-radius: 12px; width: 100%; max-width: 450px; position: relative; max-height: 90vh; overflow-y: auto; }
+    .fechar { position: absolute; top: 15px; right: 15px; background: #e2e8f0; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-weight: bold; color: var(--azul-escuro); }
+    .modal-box h3 { color: var(--azul-escuro); text-align: center; margin-bottom: 20px; }
     
-    #loading { text-align: center; padding: 30px; font-weight: bold; color: var(--azul-escuro); }
+    .campo-grupo { margin-bottom: 15px; }
+    .campo-grupo label { display: block; font-weight: 600; font-size: 0.9rem; color: var(--azul-escuro); margin-bottom: 5px; }
+    .campo-grupo input, .campo-grupo select, .campo-grupo textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 1rem; background: #f8fafc; }
+    .campo-grupo textarea { min-height: 80px; resize: vertical; }
+    .campo-grupo input:focus, .campo-grupo select:focus { outline: none; border-color: var(--azul-vivo); background: #fff; }
+    .btn-azul { background: var(--azul-vivo); color: white; border: none; padding: 14px; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; width: 100%; margin-top: 10px;}
+
+    /* ===== FATURA (ESTILO PROFORMA) ===== */
+    .fatura-box { background: white; padding: 40px; border-radius: 8px; width: 100%; max-width: 700px; position: relative; max-height: 90vh; overflow-y: auto; }
+    .folha header { display: flex; justify-content: space-between; border-bottom: 2px solid var(--azul-escuro); padding-bottom: 15px; margin-bottom: 20px; }
+    .marca { display: flex; gap: 15px; align-items: center; }
+     .logo-img {  height: 45px;  width: 45px; border-radius: 50%; 
+  border: 3px solid #d4af37;  object-fit: cover; /* círculo sem esticar */
+  display: block; 
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4); /* Um brilho dourado suave por trás */
+}
+    .logo {  height: 50px ;  width: 50px; background: var(--azul-escuro); font-weight: bold; border-radius: 50%; border: 2px solid var(--dourado); }
+    .doc { text-align: right; }
+    .doc h2 { color: var(--azul-escuro); margin: 0; }
+    
+    .fat-section { margin-top: 20px; }
+    .fat-section h3 { color: var(--azul-escuro); font-size: 1rem; border-bottom: 1px dashed #ccc; padding-bottom: 5px; margin-bottom: 10px; }
+    .fat-tabela { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    .fat-tabela th, .fat-tabela td { padding: 10px 0; border-bottom: 1px dashed #94a3b8; text-align: left; }
+    .fat-tabela th { color: var(--azul-escuro); }
+    .fat-totais { width: 50%; margin-left: auto; margin-top: 20px; text-align: right; }
+    .fat-totais div { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #ccc; }
+    .fat-totais .total { font-weight: bold; font-size: 1.1rem; border-bottom: none; padding-top: 10px; }
+    .fat-rodape { display: flex; gap: 20px; margin-top: 30px; border-top: 1px dashed #ccc; padding-top: 15px; }
+    
+    .btn-imprimir { background: var(--azul-vivo); color: white; padding: 12px; border: none; border-radius: 6px; width: 100%; font-weight: bold; cursor: pointer; margin-top: 20px; }
+
+    @media print {
+      body * { visibility: hidden; }
+      #modal-fatura, #modal-fatura * { visibility: visible; }
+      #modal-fatura { position: absolute; left: 0; top: 0; background: white; display: block !important; }
+      .fechar, .btn-imprimir { display: none !important; }
+    }
   </style>
 </head>
 <body>
 
   <header class="header-admin">
-    <h1>Admin | António Manuel</h1>
-    <button class="btn-sair" onclick="sair()">Sair</button>
+    <h1>Empresa Digital| António Manuel</h1>
+    <div class="header-botoes">
+      <button class="btn-header" onclick="abrirModal('modal-dados-empresa')">Dados da Empresa</button>
+      <button class="btn-sair" onclick="sair()">Sair</button>
+    </div>
   </header>
 
   <div class="container">
-    <div id="loading">A carregar todos os pedidos...</div>
-    
-    <table class="tabela-pedidos" id="tabela" style="display: none;">
-      <thead>
-        <tr>
-          <th>Cliente (UID)</th>
-          <th>Serviço</th>
-          <th>Estado</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody id="corpo-tabela">
-        <!-- O JavaScript vai preencher as linhas aqui -->
-      </tbody>
-    </table>
+    <div id="loading" style="text-align: center; padding: 20px; font-weight: bold;">A carregar pedidos...</div>
+    <div id="lista-admin"></div>
   </div>
 
-  <!-- Firebase -->
+  <!-- ================= MODAIS ================= -->
+
+  <!-- 1. MODAL: DEFINIR VALORES DO PEDIDO -->
+  <div id="modal-valores" class="modal">
+    <div class="modal-box" style="max-width: 400px;">
+      <button class="fechar" onclick="fecharModal('modal-valores')">X</button>
+      <h3>Valores do Pedido</h3>
+      <form id="form-valores">
+        <input type="hidden" id="val-id">
+        <div class="campo-grupo">
+          <label>Preço do Serviço (Kz)</label>
+          <input type="number" id="val-preco" placeholder="Ex: 150000" required>
+        </div>
+        <div class="campo-grupo">
+          <label>Taxa de IVA (%)</label>
+          <input type="number" id="val-iva" placeholder="Ex: 14" required>
+        </div>
+        <button type="submit" class="btn-azul">Guardar Valores</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. MODAL: DADOS DA EMPRESA (Formulário Corrigido) -->
+  <div id="modal-dados-empresa" class="modal">
+    <div class="modal-box">
+      <button class="fechar" onclick="fecharModal('modal-dados-empresa')">X</button>
+      <h3>Dados para a Fatura</h3>
+      <form id="form-dados-empresa">
+        <div class="campo-grupo">
+          <label>Telefone (Unitel Money / Afrimoney)</label>
+          <input type="text" id="emp-telefone" placeholder="+244 9xx xxx xxx" required>
+        </div>
+        <div class="campo-grupo">
+          <label>NIF</label>
+          <input type="text" id="emp-nif" placeholder="O teu NIF" required>
+        </div>
+        <div class="campo-grupo">
+          <label>Método Nacional Principal</label>
+          <select id="emp-metodo-nacional" required>
+            <option value="">Escolhe...</option>
+            <option value="Unitel Money">Unitel Money</option>
+            <option value="Afrimoney">Afrimoney</option>
+            <option value="Express">Express</option>
+            <option value="Transferência Bancária">Transferência Bancária</option>
+          </select>
+        </div>
+        <div class="campo-grupo">
+          <label>IBAN Nacional (Opcional)</label>
+          <input type="text" id="emp-iban" placeholder="AO06 0000 0000 0000 0000 0">
+        </div>
+        
+        <div style="background: #f1f5f9; padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 4px solid var(--azul-vivo);">
+          <label style="color: var(--azul-vivo); font-size: 0.9rem; font-weight: bold;">Internacional (Opcional)</label>
+          <div class="campo-grupo" style="margin-top: 10px;">
+            <label>SWIFT / BIC</label>
+            <input type="text" id="emp-swift" placeholder="Ex: BFAOAOLU">
+          </div>
+          <div class="campo-grupo">
+            <label>IBAN Internacional</label>
+            <input type="text" id="emp-iban-internacional" placeholder="Ex: PT50...">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-azul">Guardar Dados</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. MODAL: FATURA -->
+  <div id="modal-fatura" class="modal">
+    <div class="fatura-box">
+      <button class="fechar" onclick="fecharModal('modal-fatura')">X</button>
+      
+      <div class="folha">
+        <header>
+          <div class="marca">
+            <div class="logo">  <img src="img/logo-am.png" alt="AM"  onerror="this.src='https://ui-avatars.com/api/?name=AM&background=1a365d&color=ffffff&size=50'"></div>
+            <div>
+              <h1 style="margin: 0; color: var(--azul-escuro);">António Manuel</h1>
+              <p style="margin: 0; font-size: 0.8rem;">Serviços Digitais e Segurança</p>
+              <p id="fat-emissor" style="margin: 0; font-size: 0.8rem;"></p>
+            </div>
+          </div>
+          <div class="doc">
+            <h2>Factura proforma</h2>
+            <p id="fat-numero"></p>
+            <p id="fat-datas"></p>
+          </div>
+        </header>
+
+        <div class="fat-section">
+          <h3>Faturado a</h3>
+          <p id="fat-cliente" style="font-weight: bold;"></p>
+        </div>
+
+        <div class="fat-section">
+          <h3>Serviços</h3>
+          <table class="fat-tabela">
+            <thead>
+              <tr>
+                <th>Descrição</th>
+                <th style="text-align: right;">Qtd</th>
+                <th style="text-align: right;">Preço</th>
+                <th style="text-align: right;">Total</th>
+              </tr>
+            </thead>
+            <tbody id="fat-linhas"></tbody>
+          </table>
+          
+          <div class="fat-totais">
+            <div><span>Subtotal</span><span id="fat-subtotal"></span></div>
+            <div><span>IVA</span><span id="fat-iva"></span></div>
+            <div class="total"><span>Total</span><span id="fat-total"></span></div>
+          </div>
+        </div>
+
+        <div class="fat-rodape">
+          <div style="flex: 1;">
+            <h3>Estado</h3>
+            <p id="fat-estado"></p>
+          </div>
+          <div style="flex: 2;">
+            <h3>Pagamento</h3>
+            <p id="fat-pagamento" style="font-size: 0.85rem;"></p>
+          </div>
+          <div style="text-align: center;">
+            <img id="fat-qrcode" src="" alt="QR Code" style="width: 80px; height: 80px; border: 1px solid #ccc; padding: 5px; border-radius: 8px;">
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-imprimir" onclick="window.print()">Imprimir ou Guardar em PDF</button>
+    </div>
+  </div>
+
+  <!-- Firebase e Script -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>

@@ -27,7 +27,7 @@ const menuBtn = document.getElementById('menu-btn');
 const navMenu = document.getElementById('nav-menu');
 
 if(menuBtn && navMenu) {
-    // Abre e fecha ao clicar no botão (X)
+// Abre e fecha ao clicar no botão (X)
     menuBtn.addEventListener('click', () => {
         navMenu.classList.toggle('active');
         menuBtn.classList.toggle('ativo');

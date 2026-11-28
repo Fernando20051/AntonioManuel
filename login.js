@@ -42,7 +42,7 @@ function mostrarBarra(estado, mensagem) {
     if(!barra) return;
     document.getElementById('barra-texto').textContent = mensagem;
     barra.className = 'barra-progresso ativa ' + estado;
-    if (estado === 'sucesso' || estado === 'erro') {
+   if (estado === 'sucesso' || estado === 'erro') {
         setTimeout(() => barra.classList.remove('ativa'), 3500);
     }
 }
@@ -65,7 +65,7 @@ if (formLogin) {
         auth.signInWithEmailAndPassword(email, senha)
             .then((userCredential) => {
                 const user = userCredential.user;
-                mostrarBarra('sucesso', 'Login efectuado! A redirecionar...');
+                mostrarBarra('sucesso', 'Login efetuado! A redirecionar...');
 
                 // === O SEGREDO DO REDIRECIONAMENTO INTELIGENTE ===
                 // Se o e-mail for o teu (Admin), vai para o admin.html
@@ -81,7 +81,7 @@ if (formLogin) {
                 }
             })
             .catch((erro) => {
-                mostrarBarra('erro', 'E-mail ou senha incorrectos.');
+                mostrarBarra('erro', 'E-mail ou senha incorretos.');
             });
     });
 }
